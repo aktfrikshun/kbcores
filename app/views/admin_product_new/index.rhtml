@@ -1,0 +1,57 @@
+<a href="/Admin_Home"><< back to Admin Home</a>
+<br/>
+<br/>
+
+<% if @part %>
+<%= form_tag :controller => "Admin_Product_New", :action => "save" %>
+<TABLE class=tabletext style="font-size: 105%;" >
+  <TR>
+     <TD>
+         <b>Part Number:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "part_number", @part.part_number %>
+     </TD>
+  </TR>
+  <TR>
+     <TD>
+         <b>Description:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "part_description", @part.description.description %>
+     </TD>
+  </TR>  
+  <TR>
+     <TD>
+         <b>Type:</b>
+     </TD>
+     <TD>
+     	<%= select_tag "part_type", options_from_collection_for_select(@part_types,"name","name") %>
+     </TD>
+  </TR> 
+  <TR>
+     <TD valign="Top">
+         <b>Part Family:</b>
+     </TD>
+     <TD>
+     	<%= select_tag "categories[]", options_from_collection_for_select(@categories,"id","name"), { :multiple => true, :size => 4 } %>
+     </TD>
+  </TR> 
+  <TR><TD colspan=2 height=20></TD></TR>
+  <TR>
+  <TD colspan=2 align="right">
+    <INPUT type="Submit" value="Next >>">
+  </TD>
+  </TR>
+   
+</TABLE > 
+</form>
+
+
+<BR>
+
+<BR>
+
+<% else %>
+   Part not found
+<% end %>

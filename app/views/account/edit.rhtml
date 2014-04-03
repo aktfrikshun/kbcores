@@ -1,0 +1,169 @@
+<SCRIPT language="JavaScript">
+function discountChanged() {
+  selList = document.getElementById('customer_discount');
+  selIndex = selList.selectedIndex;
+  selValue = selList.options[selIndex].value
+  discountField = document.getElementById('discount');
+  discountField.value = selValue;
+}
+</SCRIPT>
+<% if @account %>
+<%= form_tag :controller => "Account", :action => "save" %>
+<%= hidden_field_tag "id", @account.id %>
+<TABLE class=tabletext style="font-size: 105%;" >
+  <TR>
+     <TD valign=top >
+         <b>Login:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "user", @account.user %>
+     </TD>
+  </TR>
+  <TR>
+     <TD valign=top >
+         <b>Password:</b>
+     </TD>
+     <TD>
+     	<INPUT type="text" name="kbpwd" id="kbpwd" value="<%= @account.password %>" />
+     </TD>
+  </TR>  
+  <TR>
+     <TD valign=top >
+         <b>Account Number:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "account_number", @account.account_number %>
+     </TD>
+  </TR>
+  <TR>
+     <TD valign=top >
+         <b>Company Name:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "company_name", @account.company_name %>
+     </TD>
+  </TR>
+  <TR>
+     <TD valign=top >
+         <b>Account Type:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "account_type", @account.account_type %>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>Contact Name:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "contact_name", @account.contact_name %>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>Discount:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "discount", @account.discount %> 
+     	<select onchange="discountChanged();" name="customer_discount" id="customer_discount">
+     	   <option value="0.00">No Discount</option>	   
+     	   <option value="0.52">Core Supplier</option>     	  
+    	   <option value="0.36">Rebuilder</option>
+    	   <option value="0.36">Distributor</option>
+    	   <option value="0.20">Installer</option>
+     	</select>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>Address1:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "address_line1", @account.address_line1 %>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>Address2:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "address_line2", @account.address_line2 %>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>City:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "city", @account.city %>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>State:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "state", @account.state_or_province %>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>Zip Code:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "postal_code", @account.postal_code %>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>Telephone:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "telephone_number", @account.telephone_number %>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>Fax:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "fax_number", @account.fax_number %>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>Email:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "email_address", @account.email_address %>
+     </TD>
+  </TR>    
+
+
+
+
+
+
+
+
+
+
+
+  <TR><TD colspan=2 height=20></TD></TR>
+  <TR>
+  <TD colspan=2 align="right">
+    <INPUT type="Submit" value="Save">
+  </TD>
+  </TR>
+   
+</TABLE > 
+</form>
+
+
+<BR>
+
+<BR>
+
+<% else %>
+   Account not found
+<% end %>

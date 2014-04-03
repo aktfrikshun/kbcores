@@ -1,0 +1,75 @@
+<a href="/Admin_Home"><< back to Admin Home</a>
+<br/>
+<br/>
+<SCRIPT language="javascript">
+ 		function getSelectedValue (select) {
+  				var r = new Array();
+  				for (var i = 0; i < select.options.length; i++)
+    			   if (select.options[i].selected)
+      			      return select.options[i].value;
+ 			}
+  		function selectionWeekChanged() {
+  		        var weekList = document.getElementById("week");
+  		        var weekSel = getSelectedValue(weekList);
+                location = "/tracking_report/change_week?week=" + weekSel;
+  			}  			
+</SCRIPT>
+
+Select a week: 
+<select   name="week" id="week" onChange="selectionWeekChanged();"    >
+         <% @weeks.each do |wk| %>
+           <% if wk['yearweek(create_date)'] == session[:this_week] %>
+   		     <option selected value="<%= wk['yearweek(create_date)'] %>" ><%= wk['yearweek(create_date)'] %></option>          
+   		   <% else %>
+   		     <option value="<%= wk['yearweek(create_date)'] %>" ><%= wk['yearweek(create_date)'] %></option>            
+   		   <% end %>
+        <% end %>
+</select>	or choose statistics falling within the last:  
+<A href="/tracking_report/showrange?days=alldays">All</A> |
+<A href="/tracking_report/showrange?days=30days"> 30 days</A> |
+<A href="/tracking_report/showrange?days=60days"> 60 days</A> |
+<A href="/tracking_report/showrange?days=90days"> 90 days</A> |
+<A href="/tracking_report/showrange?days=180days"> 180 days</A> |
+<A href="/tracking_report/showrange?days=360days"> 360 days</A>      
+<HR width="100%" />
+Statistics for week: <%= @this_week %>
+
+<BR/>
+<BR/>
+<b>Hits by Page:</b>
+<TABLE>
+<% @hitsByPage.each do | row | %>
+<TR><TD width=25><TD><%= row['page_name'] %>: </TD><TD align=right> <%= row['hitcount'] %> </TD></TR>
+<% end %>
+</TABLE>
+<BR/>
+
+<b>Hits by Part Number:</b>
+<TABLE>
+<% @hitsByPartNumber.each do | row | %>
+<TR><TD width=25></TD><TD><%= row['part_number'] %>: </TD><TD align=right> <%= row['hitcount'] %> </TD></TR>
+<% end %>
+</TABLE>
+<BR/>
+
+<b>Hits by IP Address:</b>
+<TABLE>
+<% @hitsByIPAddress.each do | row | %>
+<TR><TD width=25><TD><%= row['ip_address'] %> 
+<% if row['City'] and row['City'].length > 0 %>
+  in <%= row['City'] %>, <%= row['Region'] %> ( <%= row['Country'] %> ):  
+<% else %>
+  in unknown location:
+<% end %>  
+</TD><TD align=right> <%= row['hitcount'] %>   </TD></TR>
+<% end %>
+</TABLE>
+<BR/>
+
+<b>Hits by Customer:</b>
+<TABLE>
+<% @hitsByCustomer.each do | row | %>
+<TR><TD width=25><TD><%= row['user'] %>: </TD><TD align=right> <%= row['hitcount'] %> </TD></TR>
+<% end %>
+</TABLE>
+<BR/>

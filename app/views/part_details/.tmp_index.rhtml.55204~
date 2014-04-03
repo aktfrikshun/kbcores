@@ -1,0 +1,259 @@
+<TABLE cellspacing=0 cellpadding=0 bgcolor="white" width="1024" >
+    <TR>
+        <TD colspan=2>
+            <%= link_to "<< Back to results",{ :controller => "Part", :action => "refresh", :rid => @rid } %>
+        </TD>
+    </TR>
+</TABLE>
+<% if @part %>
+<%	session[:next_page] = "Part_Details"
+session[:next_action] = "index"
+session[:next_id] = @part.id %>
+<table cellspacing=0 cellpadding=0 bgcolor="white" width="1024">
+    <tr>
+        <td nowrap style="border-TOP: 1px solid #000000">
+            <table cellpadding="0" cellspacing="6" width="100%">
+                <tr>
+                    <td  width="150"  >
+                        <em>KB Part #&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td valign="middle"  width="350" >
+                        <%= @part.part_no %>&nbsp;&nbsp;
+					<A HREF="/Part_Details/addtocart/<%= @part.id %>"> <img border=0 height="20" src="/images/list.jpg" alt="add to list" title="add to list" /> </A>
+                    </td>
+                    <td    width="150"  >
+                        <em>Stroke&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.stroke %>
+                    </td>
+                </tr>
+                <tr>
+                    <td    width="150" >
+                        <em>Part Type&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.part_type %>
+                    </td>
+                    <td   width="150"   >
+                        <em>Rod&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.rod %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"  >
+                        <em>Part Category&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.part_category %>
+                    </td>
+                    <td   width="150"   >
+                        <em>Main&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.main %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Manufacturer&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.manufacturer %>
+                    </td>
+                    <td   width="150"   >
+                        <em>Connect Rod Length&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.connect_rod_len %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Description&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td  width="350"  >
+                        <%= @part.description %>
+                    </td>
+                    <td   width="150"   >
+                        <em>Camshaft&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.camshaft %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Cylinders&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.cylinders %>
+                    </td>
+                    <td  width="150"   >
+                        <em>Valves&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.valves %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Liters&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.liters %>
+                    </td>
+                   <td   width="150"   >
+                        <% if @rid >= 2 %><em>Front Seal Diam&nbsp;&nbsp;&nbsp;&nbsp;</em><% end %>
+                    </td>
+                    <td width="350" >
+                        <% if @rid >= 2 %><%= @part.front_seal_dia %><% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>CC's&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.ccs %>
+                    </td>
+                   <td   width="150"   >
+                        <% if @rid >= 2 %><em>Rear Seal Diam&nbsp;&nbsp;&nbsp;&nbsp;</em><% end %>
+                    </td>
+                    <td width="350" >
+                        <% if @rid >= 2 %><%= @part.rear_seal_dia %><% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"  >
+                        <em>Casting #&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.casting_no %>
+                    </td>
+                    <td   width="150"   >
+                        <% if @rid >= 3 %><em>Bore&nbsp;&nbsp;&nbsp;&nbsp;</em><% end %>
+                    </td>
+                    <td width="350" >
+                        <% if @rid >= 3 %><%= @part.bore %><% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Trans Speed&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.trans_speed %>
+                    </td>
+                    <td   width="150"   >
+                        <% if @rid >= 3 %><em>App Year&nbsp;&nbsp;&nbsp;&nbsp;</em><% end %>
+                    </td>
+                    <td width="350" >
+                    	<% if @rid >= 3 %>
+                    	<% if @part.application_start_yr > 0 %>
+                        <%= @part.application_start_yr %>- 
+						<% end %>
+						<% if @part.application_end_yr > 0 %>
+						<%= @part.application_end_yr %>
+						<% end %>
+						<% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Trans Type&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.trans_type %>
+                    </td>
+                    <td  width="150"   >
+                        <% if @rid >= 3 %><em>Metal&nbsp;&nbsp;&nbsp;&nbsp;</em><% end %>
+                    </td>
+                    <td width="350" >
+                        <% if @rid >= 3 %><%= @part.metal %><% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Notes&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <%= @part.notes %>
+                    </td>
+                    <td  width="150"   >
+                        <% if @rid >= 3 %><em>KB Product Code&nbsp;&nbsp;&nbsp;&nbsp;</em><% end %>
+                    </td>
+                    <td width="350" >
+                        <% if @rid >= 3 %><%= @part.kb_product_code %><% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"  >
+                        <% if @rid >= 3 %><em>Price&nbsp;&nbsp;&nbsp;&nbsp;</em><% end %>
+                    </td>
+                    <td width="350" >
+                        <% if @rid >= 3 %><% if (@part.price  and (@part.price.to_f > 0.0)) %>
+							<%= number_to_currency(@part.price.to_f) %>
+						<% end %><% end %>
+                    </td>
+                    <td  width="150"  >
+                        <% if @rid >= 3 %><em>On Hand&nbsp;&nbsp;&nbsp;&nbsp;</em><% end %>
+                    </td>
+                    <td width="350" >
+                        <% if @rid >= 3 %><%= @part.on_hand %><% end %>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<table cellspacing=0 cellpadding=0 bgcolor="white" width="1024">
+    <tr>
+        <td style="border-TOP: 1px solid #000000">
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-1.jpg'") %>
+            <% if @picture %>
+            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+		<% if @rid >= 2 %>
+        <td style="border-TOP: 1px solid #000000">
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-2.jpg'") %>
+            <% if @picture %>
+            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+        <td style="border-TOP: 1px solid #000000">
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-3.jpg'") %>
+            <% if @picture %>
+            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+				</tr><tr>
+        <td >
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-4.jpg'") %>
+            <% if @picture %>
+            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+        <td >
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-5.jpg'") %>
+            <% if @picture %>
+            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+		<td ></td>
+		<% else %>
+		<td style="border-TOP: 1px solid #000000"><img border=0 width=250 src="/images/restricted_images_logo.jpg" alt="Please contact one of our parts specialists (800) 822-2673 for a username and password to view detail images" title="Please contact one of our parts specialists (800) 822-2673 for a username and password to view detail images"/></td>
+		<td style="border-TOP: 1px solid #000000"><img border=0 width=250 src="/images/restricted_images_logo.jpg" alt="Please contact one of our parts specialists (800) 822-2673 for a username and password to view detail images" title="Please contact one of our parts specialists (800) 822-2673 for a username and password to view detail images"/></td>
+		</tr><tr>
+		<td ><img border=0 width=250 src="/images/restricted_images_logo.jpg" alt="Please contact one of our parts specialists (800) 822-2673 for a username and password to view detail images" title="Please contact one of our parts specialists (800) 822-2673 for a username and password to view detail images"/></td>
+		<td ><img border=0 width=250 src="/images/restricted_images_logo.jpg" alt="Please contact one of our parts specialists (800) 822-2673 for a username and password to view detail images" title="Please contact one of our parts specialists (800) 822-2673 for a username and password to view detail images"/></td>
+		<td ></td>
+		<% end %>
+    </tr>
+</table>
+</TABLE><% else %>
+Part <%= @part_id %>not found<% end %>

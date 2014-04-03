@@ -1,0 +1,56 @@
+
+<% if @user %>
+<%= form_tag :controller => "User", :action => "save" %>
+<%= hidden_field_tag "id", @user.id %>
+<TABLE class=tabletext style="font-size: 105%;" >
+  <TR>
+     <TD valign=top >
+         <b>User Id:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "user_id", @user.user_id %>
+     </TD>
+  </TR>
+  <TR>
+     <TD valign=top >
+         <b>Password:</b>
+     </TD>
+     <TD>
+     	<%= password_field_tag "password", @user.password %>
+     </TD>
+  </TR>
+  <TR>
+     <TD valign=top >
+         <b>First Name:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "first_name", @user.first_name %>
+     </TD>
+  </TR>    
+  <TR>
+     <TD valign=top >
+         <b>Last Name:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "last_name", @user.last_name %>
+     </TD>
+  </TR>    
+
+  <TR><TD colspan=2 height=20></TD></TR>
+  <TR>
+  <TD colspan=2 align="right">
+    <INPUT type="Submit" value="Save">
+  </TD>
+  </TR>
+   
+</TABLE > 
+</form>
+
+
+<BR>
+
+<BR>
+
+<% else %>
+   User not found
+<% end %>

@@ -1,0 +1,130 @@
+<table cellpadding="0" cellspacing="0" border="0" class=tabletext width="1024">
+    <tr>
+        <td>
+            <%= @translator.get_msg2(session[:language], "PAGE :arg1 OF :arg2", @this_page.page_num.to_s, @this_page.get_num_pages.to_s) %>
+			
+        </td>
+        <td>
+        	
+        </td>
+    </tr>
+</table>
+<table cellspacing=0 cellpadding=0 with="1024">
+    <% @products.each do |product| %>
+	
+    <tr >
+        <td nowrap style="border-TOP: 1px solid #000000" >
+            <table width="500px">
+                <tr>
+                    <td width="100">
+                        <em>KB Part #&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><a href="/Part_Details/index/<%= product.id %>?rid=<%= @rid %>" ><%= product.part_no %></a>&nbsp;&nbsp;
+					<A HREF="/Part_Details/addtocart/<%= product.id %>"> <img border=0 height="20" src="/images/list.jpg" alt="add to list" title="add to list" /> </A>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        <em>Part Type&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.part_type %>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        <em>Part Category&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.part_category %>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        <em>Manufacturer&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.manufacturer %>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        <em>Cylinders&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.cylinders %>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        <em>Liters&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.liters %>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        <em>CC's&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.ccs %>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        <em>Casting #&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.casting_no %>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        <em>Trans Speed&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.trans_speed %>
+                    </td>
+                </tr>
+								                <tr>
+                    <td width="100">
+                        <em>Trans Type&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.trans_type %>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100">
+                        <em>Notes&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.notes %>
+                    </td>
+                </tr>		
+
+            </table>
+        </td>
+        <td style="border-TOP: 1px solid #000000" width="260">
+        	 <%   @picture = Picture.find(:first, :conditions => " name = '" + product.part_no + "-1.jpg'") %>
+			 <% if @picture %>
+				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal">
+				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+				 </A>
+			 <% else %>
+			 	<img border=0 width=250 src="/images/photo_coming_soon.jpg" />
+		 	 <% end %>
+        </td>
+        <td  style="border-TOP: 1px solid #000000" width="260">
+        	<% if @rid >= 2 %>
+        	 <%   @picture = Picture.find(:first, :conditions => " name = '" + product.part_no + "-2.jpg'") %>
+			 <% if @picture %>
+				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" >
+				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+				 </A>
+			 <% else %>
+			 	<img border=0 width=250 src="/images/photo_coming_soon.jpg" />
+		 	 <% end %>
+		    <% else %>
+			<img border=0 width=250 src="/images/restricted_images_logo.jpg" alt="Please contact one of our parts specialists (800) 822-2673 for a username and password to view detail images" title="Please contact one of our parts specialists (800) 822-2673 for a username and password to view detail images"/>
+			<% end %>
+        </td>
+    </tr>
+    <% end %>
+</table>
+  <SCRIPT language="JavaScript">
+    document.location.href="#results_section";
+	EYE.init();
+	trap();	
+  </SCRIPT>

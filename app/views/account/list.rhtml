@@ -1,0 +1,83 @@
+<b>Select an account from the below list, or use search keywords to narrow your choices</b>
+<BR>
+<%= form_remote_tag( :update => "page_view",
+					:url => {:action => "search" } ) %>
+					
+<TABLE width=100% class=bodytext style="font-size: 95%">
+<TR>
+<TD align=right>
+<b>Account Number: </b>
+</TD>
+<TD >
+ <%= text_field_tag :account_number %>
+ <%= observe_field(:account_number,
+ 					:frequency => 0.5,
+ 					:update => :page_view,
+ 					:url => { :action => :search_account }) %>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD align=right>
+<b>Login: </b>
+</TD>
+<TD >
+ <%= text_field_tag :user %>
+ <%= observe_field(:user,
+ 					:frequency => 0.5,
+ 					:update => :page_view,
+ 					:url => { :action => :search_user }) %>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR> 		
+<TD align=right>			
+ <b>Company Name: </b>
+</TD>
+<TD>
+ <%= text_field_tag :company_name %>
+ <%= observe_field(:company_name,
+ 					:frequency => 0.5,
+ 					:update => :page_view,
+ 					:url => { :action => :search_company_name }) %>
+</TD> 	
+<TD>				
+ 	<INPUT type=SUBMIT value="Search All Keywords">		
+</TD>	
+</TR>
+</TABLE>
+</form>
+<BR>
+<TABLE width=100% >
+<TR><TD align=right ><%= link_to "Create new account", :controller => "Account", :action => "new"  %>
+</TD></TR>
+</TABLE>
+<HR width=100% >
+<div id=page_view>
+<% if @this_page.tot_items == 0 %>
+   No accounts found!
+<% else %>
+  <table width=100%>
+   <tr>
+    <td>
+     <span class=tabletext>Found <%= @this_page.tot_items %> accounts</span>
+    </td>
+    <td align=right> 
+     <%= link_to_remote "< Previous", :update => "results",:url => {:action => "prev_page" } %> | <%= link_to_remote "Next >", :update => "results",:url => {:action => "next_page" } %>
+    </td>
+   </tr>
+  </table>
+   <div id=results>
+      <%= render_component(:controller => "Account", :action  => "show_results") %>
+   </div>
+   <%= hidden_field("this_page","page_num") %>
+   <%= hidden_field("this_page","tot_items") %>
+   <%= hidden_field("this_page","page_size") %>
+   <%= hidden_field("this_page","start") %>  
+   <%= hidden_field("this_page","num_pages") %>  
+   
+</div>    
+<% end %>
+

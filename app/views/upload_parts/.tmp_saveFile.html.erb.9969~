@@ -1,0 +1,61 @@
+Processed <%= @results.size %> parts from file <%= @name %><BR>
+<%= flash[:msg] %><BR>
+ <TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Home/index">
+      << back to Admin 
+    </A>
+  </TD>
+  </TR>
+</TABLE>
+<TABLE width=1000px border=1 cellpadding=2  class="tabletext">
+  <TR>
+  <TH valign="bottom">Part Number<BR>Col 1</TH>
+  <TH valign="bottom">Product Type<BR>Col 8</TH>
+  <TH valign="bottom">Classification<BR>Col 2</TH>  
+  <TH valign="bottom">Description<BR>Col 3</TH>
+  <TH valign="bottom">Price<BR>Col 5</TH>
+  <TH valign="bottom">Mfr<BR>Col 6</TH>
+  <TH valign="bottom">Family<BR>Col 7</TH>
+  <TH valign="bottom">Notes<BR>Col 4</TH>
+  <TH valign="bottom">Display Order<BR>Col 10</TH>  
+  <TH valign="bottom">Family Pict<BR>Col 9</TH>
+  <TH valign="bottom">Group Pict<BR>Col 11</TH> 
+  <TH valign="bottom">Detail1 Pict<BR>Col 12</TH>
+  <TH valign="bottom">Detail2 Pict<BR>Col 13</TH>
+  <TH valign="bottom">Detail3 Pict<BR>Col 14</TH>
+  <TH valign="bottom">Detail4 Pict<BR>Col 15</TH>
+  <TH valign="bottom">Detail5 Pict<BR>Col 16</TH>            
+  </TR>
+  <% @results.each do | part | %>
+  <TR  class="tabletext">
+   <TD nowrap  class="tabletext"><%= part["part_number"] %></TD>
+   <TD nowrap class="tabletext"><%= part["product_type"] %></TD>
+   <TD class="tabletext"><%= part["classification"] %></TD>
+   <TD class="tabletext"><%= part["description"] %></TD>   
+   <TD nowrap class="tabletext" align="right">$<%= part["level_1_price"] %></TD>     
+   <TD nowrap class="tabletext"><%= part["mfr"] %></TD>
+   <TD nowrap class="tabletext"><%= part["family"] %></TD>
+   <TD class="tabletext"><%= part["notes"] %></TD>   
+   <TD nowrap class="tabletext"><%= part["display_order"] %></TD>       
+   <TD nowrap class="tabletext"><%= part["family_pict"] %></TD>
+   <TD nowrap class="tabletext"><%= part["group_pict"] %></TD>
+   <TD nowrap class="tabletext"><%= part["detail1_pict"] %></TD>
+   <TD nowrap class="tabletext"><%= part["detail2_pict"] %></TD>
+   <TD nowrap class="tabletext"><%= part["detail3_pict"] %></TD>
+   <TD nowrap class="tabletext"><%= part["detail4_pict"] %></TD>
+   <TD nowrap class="tabletext"><%= part["detail5_pict"] %></TD>                    
+  </TR>
+ <% end %>
+ </TABLE>
+ <TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Home/index">
+      << back to Admin 
+    </A>
+  </TD>
+  </TR>
+</TABLE>
+ 

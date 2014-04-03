@@ -1,0 +1,6 @@
+              <b>Model</b><BR>
+       <select name="models[]" id="models[]" size="8" multiple  style="width:200">
+        <% @models.each do |md| %>
+   		     <option value=<%= md.MODELNAME %> ><%= md.MODELNAME %></option>          
+        <% end %>
+      </select>	

@@ -1,0 +1,56 @@
+<a href="/Admin_Home"><< back to Admin Home</a>
+<br/>
+<br/>
+
+<%= form_tag( {:action => "savePicture"}, :multipart => true) %>
+
+<TABLE class=tabletext style="font-size: 105%;" width=100%>
+<TR>
+<TD width=50% valign=top>
+<BR>
+       <b>Upload a new picture </b>
+<BR>
+<BR>
+<TABLE class=tabletext style="font-size: 105%;" >
+
+  <TR height=30>
+    <TD><b>Picture Title:</b></TD><TD><%= text_field_tag("comment") %></TD>
+  </TR>
+  <TR>
+     <TD colspan=2>
+        <I> Click on the "Browse" button to locate your picture file and then choose "Upload File" to save the picture for this part...</I>
+ 		<%= file_field("picture","picture") %>
+        <BR><INPUT type=SUBMIT value="Upload Picture" style="height:22" >
+       	<BR>
+        <font color=Red><%= flash[:msg] %></font>
+     </TD>
+  </TR>
+  <TR><TD colspan=2 height=25></TD></TR>
+
+   
+</TABLE > 
+</form>
+</TD>
+<TD align="Center" valign=Top >
+
+</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Pictures/list">
+      << back to picture list 
+    </A>
+  </TD>
+  </TR>
+</TABLE>
+
+
+
+
+<BR>
+
+<BR>

@@ -1,0 +1,7 @@
+  		<b>Part Name</b><BR>
+        <select  name="part_names[]" id="part_names[]"    style="width:300">
+          <option value="ALL">ALL</option>        
+          <% @part_names.each do |ct| %>
+            <option value="<%= ct.code_value %>" ><%= ct.code_value %></option>          
+          <% end %>
+        </select>	

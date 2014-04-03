@@ -1,0 +1,143 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<style type="text/css">
+body {
+	
+}
+.bodytitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FF6633;
+}
+.bodytxt {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+.botnav {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #999999;
+	font-style: italic;
+	line-height: normal;
+	text-align: center;
+}
+
+a:link {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: bold; color: #ff9900; text-decoration: none; line-height: 14px}
+a:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: bold; color: #ff6600; text-decoration: underline; line-height: 14px}
+a:active {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: bold; color: #ff9900; text-decoration: none; line-height: 14px}
+a:visited {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: bold; color: #ff9900; text-decoration: none; line-height: 14px}
+.subtitle {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #FF6600;
+}
+.tabletext {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+}
+ul {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+ol {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+sup{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8px;
+	font-weight: normal;
+	color: #000000;
+}
+P  {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+.subtitlelink {
+
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #0066CC;
+}
+
+</style>
+</head>
+<body bgcolor=#FFFFFF leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<!-- begin main table -->
+
+<span class="bodytitle"><br>
+Customer comment received... </span></p>
+<p>
+<TABLE class=tabletext style="font-size: 125%">
+<TR>
+	<TD>
+	  <%= @contact.first_name %> <%= @contact.last_name%> 
+	  <% if !((@contact.title == nil)||(@contact.title.length == 0)) %>
+	    the <%= @contact.title %> 
+	  <% end %>
+	  <% if !((@contact.company == nil) || (@contact.company.length == 0)) %>
+	    of <%= @contact.company %>  
+	  <% end %>
+	  has sent the following comment:
+	  <TABLE class=tabletext style="font-size: 105%">
+         <TR>
+           <TD width=25><TD>
+           <TD>
+	    	<I><%= @contact.comments %></I>
+	       </TD>
+         </TR>
+       </TABLE>
+	    	
+	  </P>
+	</TD>
+</TR>
+<TR>
+    <TD>
+    You may contact <%= @contact.first_name %> at:
+       <TABLE class=tabletext style="font-size: 105%">
+         <TR>
+           <TD width=25><TD>
+           <TD>
+           <%= @contact.address1 %><BR>
+           <% if !((@contact.address2 == nil) || (@contact.address2.length == 0)) %>
+             <%= @contact.address2 %><BR>
+           <% end %>
+           <% if !((@contact.city == nil) || (@contact.city.length == 0)) %>
+             <%= @contact.city %>, 
+           <% end %>
+           <%= @contact.state %>&nbsp;&nbsp;<%= @contact.zip_code %><BR><BR>
+           <%= @contact.phone %><BR>
+           <%= @contact.email %>
+           </TD>
+         </TR>
+       </TABLE>
+     </TD>
+</TR>
+</TABLE>
+
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,117 @@
+<table border="0" class=tabletext width=100%>
+    <tr>
+        <td>
+            <%= @translator.get_msg2(session[:language], "PAGE :arg1 OF :arg2", @this_page.page_num.to_s, @this_page.get_num_pages.to_s) %>
+        </td>
+        <td>
+        </td>
+    </tr>
+</table>
+<table cellspacing=0 cellpadding=4 >
+    <% @products.each do |product| %>
+	
+    <tr >
+        <td nowrap style="border-TOP: 1px solid #000000" >
+            <table>
+                <tr>
+                    <td>
+                        <em>KB Part #&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.part_no %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Part Type&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.part_type %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Part Category&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.part_category %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Manufacturer&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.manufacturer %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Cylinders&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.cylinders %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Liters&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.liters %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>CC's&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.ccs %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Casting #&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.casting_no %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Trans Speed&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.trans_speed %>
+                    </td>
+                </tr>
+								                <tr>
+                    <td>
+                        <em>Trans Type&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.trans_type %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Notes&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= product.notes %>
+                    </td>
+                </tr>				
+            </table>
+        </td>
+        <td style="border-TOP: 1px solid #000000" >
+        	 <%   @picture = Picture.find(:first, :conditions => " name = '" + product.part_no + "1.jpg'") %>
+			 <% if @picture %>
+				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>">
+				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+				 </A>
+			 <% else %>
+			 	<img border=0 width=250 src="/images/No-Image-Available.gif" />
+		 	 <% end %>
+        </td>
+        <td  style="border-TOP: 1px solid #000000" >
+        	 <%   @picture = Picture.find(:first, :conditions => " name = '" + product.part_no + "2.jpg'") %>
+			 <% if @picture %>
+				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>">
+				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+				 </A>
+			 <% else %>
+			 	<img border=0 width=250 src="/images/No-Image-Available.gif" />
+		 	 <% end %>
+        </td>
+    </tr>
+    <% end %>
+</table>

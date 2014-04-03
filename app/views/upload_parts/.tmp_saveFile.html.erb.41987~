@@ -1,0 +1,92 @@
+Processed <%= @results.size %> parts from file <%= @name %><BR>
+<%= flash[:msg] %><BR>
+ <TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Home/index">
+      << back to Admin 
+    </A>
+  </TD>
+  </TR>
+</TABLE>
+<TABLE width=1000px style="border: 1px solid;" cellpadding=2  class="tabletext">
+
+  <TR>
+  <TH></TH>
+  <TH valign="bottom">Part Number</TH>
+  <TH valign="bottom">Part Type</TH>
+  <TH valign="bottom">Part Category</TH>  
+  <TH valign="bottom">Description</TH>
+  <TH valign="bottom">Manufacturer</TH>
+  <TH valign="bottom">Cylinders</TH>
+  <TH valign="bottom">Liters</TH>
+  <TH valign="bottom">CCs</TH>
+  <TH valign="bottom">Stroke</TH>  
+  <TH valign="bottom">Rod</TH>
+  <TH valign="bottom">Main</TH> 
+  <TH valign="bottom">Front Seal Diam</TH>
+  <TH valign="bottom">Rear Seal Diam</TH>
+  <TH valign="bottom">Bore</TH>
+  <TH valign="bottom">Connect Rod Len</TH>
+  <TH valign="bottom">Camshaft</TH>  
+<TH valign="bottom">Valves</TH>
+<TH valign="bottom">Casting No</TH>
+<TH valign="bottom">Trans Speed</TH>
+<TH valign="bottom">Trans Type</TH>
+<TH valign="bottom">Notes</TH>
+<TH valign="bottom">Application Start Yr</TH>
+<TH valign="bottom">Application End Yr</TH>  
+<TH valign="bottom">Metal</TH>
+<TH valign="bottom">KB Product Code</TH>
+<TH valign="bottom">On Hand</TH>
+<TH valign="bottom">Price</TH>
+  </TR>
+  <% @rowcnt = 0 %>
+  <% @results.each do | part | %>
+  <% @rowcnt = @rowcnt + 1 %>
+    <% if ((@rowcnt % 2) == 1) %>
+  		<TR  bgcolor="#DDDDDD" class="tabletext">
+  	<% else %>
+  		<TR  bgcolor="#EEEEEE" class="tabletext">	
+	<% end %>
+   <TD align="right"><%= @rowcnt %>. </TD>
+   <TD nowrap  class="tabletext"><%= part["part_no"] %></TD>
+   <TD nowrap class="tabletext"><%= part["part_type"] %></TD>
+   <TD nowrap class="tabletext"><%= part["part_category"] %></TD>
+   <TD class="tabletext"><%= part["description"] %></TD>   
+   <TD nowrap class="tabletext"><%= part["manufacturer"] %></TD>     
+   <TD nowrap class="tabletext"><%= part["cylinders"] %></TD>
+   <TD nowrap class="tabletext"><%= part["liters"] %></TD>
+   <TD nowrap class="tabletext"><%= part["ccs"] %></TD>   
+   <TD nowrap class="tabletext"><%= part["stroke"] %></TD>       
+   <TD nowrap class="tabletext"><%= part["rod"] %></TD>
+   <TD nowrap class="tabletext"><%= part["main"] %></TD>
+   <TD nowrap class="tabletext"><%= part["front_seal_dia"] %></TD>
+   <TD nowrap class="tabletext"><%= part["rear_seal_dia"] %></TD>
+   <TD nowrap class="tabletext"><%= part["bore"] %></TD>
+   <TD nowrap class="tabletext"><%= part["connect_rod_len"] %></TD>
+   <TD nowrap class="tabletext"><%= part["camshaft"] %></TD>     
+<TD nowrap class="tabletext"><%= part["valves"] %></TD>    
+<TD nowrap class="tabletext"><%= part["casting_no"] %></TD>  
+<TD nowrap class="tabletext"><%= part["trans_speed"] %></TD>    
+<TD nowrap class="tabletext"><%= part["trans_type"] %></TD> 
+<TD class="tabletext"><%= part["notes"] %></TD>    
+<TD nowrap class="tabletext"><%= part["application_start_yr"] %></TD> 
+<TD nowrap class="tabletext"><%= part["application_end_yr"] %></TD>    
+<TD nowrap class="tabletext"><%= part["metal"] %></TD> 
+<TD nowrap class="tabletext"><%= part["kb_product_code"] %></TD> 
+<TD nowrap class="tabletext"><%= part["on_hand"] %></TD> 
+<TD nowrap class="tabletext"><%= part["price"] %></TD> 
+  </TR>
+ <% end %>
+ </TABLE>
+ <TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Home/index">
+      << back to Admin 
+    </A>
+  </TD>
+  </TR>
+</TABLE>
+ 

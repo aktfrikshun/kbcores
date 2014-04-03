@@ -1,0 +1,25 @@
+Picture load complete!<BR>
+<TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Home/index">
+      << back to Admin 
+    </A>
+  </TD>
+  </TR>
+</TABLE>
+Succesfully added the following <%= @i %> part pictures to the picure library database...<BR><BR>
+<BR>
+<% @items.each do | pict | %>
+<%= pict %><BR>
+<% end %>
+<BR>
+<TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Home/index">
+      << back to Admin 
+    </A>
+  </TD>
+  </TR>
+</TABLE>

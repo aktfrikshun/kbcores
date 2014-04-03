@@ -1,0 +1,24 @@
+You may update the below news articles or
+<%= link_to "click here", "/AdminHome"%> to return to the main admin menu.
+<BR><BR>
+<% if (@news_articles.size > 0) %>
+<table border="0" class=tabletext style="font-size: 105%" width=100%>
+ <tr>
+  <td ><b>Date</b></td>
+  <td ><b>Title</b></td>
+  <td ><b>Ticker</b></td>
+  <td></td>
+ </tr>
+
+ <% @news_articles.each do |article| %>
+  <tr>
+   <td><%= article.create_date %></td>
+   <td><%= link_to  article.title , :action => "edit", :id => article.id %></td>
+   <td><%= article.link_in_ticker %> </td>
+   <td><%= link_to "Delete", {:action => "delete", :id => article.id }, :confirm => "Are you sure you want to delete the article titled '#{article.title}'?" %></td>
+  </tr>
+ <% end %>
+</table>
+<% end %>
+<p><%= link_to "Create a news article", :action => "new" %></p>
+

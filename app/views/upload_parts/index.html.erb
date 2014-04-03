@@ -1,0 +1,51 @@
+<a href="/Admin_Home"><< back to Admin Home</a>
+<br/>
+<br/>
+<%= form_tag( {:action => "saveFile"}, :multipart => true) %>
+
+<TABLE class=tabletext style="font-size: 105%;" width=100%>
+<TR>
+<TD width=50% valign=top>
+<BR>
+       <b>Upload a parts spreadsheet </b>
+<BR>
+<BR>
+<TABLE class=tabletext style="font-size: 105%;" >
+  <TR>
+     <TD colspan=2>
+        <I> Click on the "Browse" button to locate your file and then choose "Upload File" to process the parts in the spreadsheet...</I>
+ 		<%= file_field("upload","datafile") %>
+        <BR><INPUT type=SUBMIT value="Upload File" style="height:22" >
+       	<BR>
+        <font color=Red><%= flash[:msg] %></font>
+     </TD>
+  </TR>
+  <TR><TD colspan=2 height=25></TD></TR>
+
+   
+</TABLE > 
+</FORM>
+</TD>
+<TD align="Center" valign=Top >
+
+</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Home/index">
+      << back to Admin 
+    </A>
+  </TD>
+  </TR>
+</TABLE>
+
+
+
+
+<BR>
+
+<BR>

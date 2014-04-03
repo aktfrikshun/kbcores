@@ -1,0 +1,22 @@
+ 	  		<b>Manufacturer</b><BR>
+        <select   onChange="selectionMfrChanged();" name="mfrs[]" id="mfrs[]"    style="width:300">
+              		  <option value="ALL">ALL</option>
+        <% @mfrlist.each do |co| %>
+   		     <option value="<%= co.code_value %>" ><%= (CommonCode.new).get_mfr_label(co.code_value) %></option>          
+        <% end %>
+      </select>	
+      
+      <INPUT TYPE=HIDDEN name="MfrSelection" id="MfrSelection">
+      <%= observe_field("MfrSelection",
+ 					:frequency => 0.25,
+ 					:update => :famsdiv,
+ 					      :url => { :action => :refresh_fams },
+ 					      :with => "'part_type='+ escape($('PartTypeSelection').value) + '&mfr='+ escape($('MfrSelection').value)")
+      %>
+      <%= observe_field("MfrSelection",
+ 					      :frequency => 0.25,
+ 					      :update => :partnamesdiv,
+ 					      :url => { :action => :refresh_partnames },
+ 					      :with => "'part_type='+ escape($('PartTypeSelection').value) + '&mfr='+ escape($('MfrSelection').value)")
+ 					      %>			
+		

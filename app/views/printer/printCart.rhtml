@@ -1,0 +1,114 @@
+<head>
+ <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+</head>
+<body onload="window.print();">
+If this page doesn't automatically print, then choose "File->Print" from the browser menu...<BR><BR>
+Cart printed on <%= Time.now %>
+<BR>
+
+<CENTER>
+
+<h2>Call 1-800-822-2673 to Order</h2>
+</CENTER>
+
+
+
+<% if @products %>
+<CENTER>
+	
+<%= form_tag :controller => "Shopping_Cart", :action => "updateCart" %>
+
+<TABLE cellpadding=2 cellspacing=2 class=tabletext   style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%" >
+<TR><TD colspan=8 align=center>
+	
+	<table><tr>
+		<td><strong>Name: </strong></td><td><%= session[:cust_name] %></td>
+	    <td><strong>Company: </strong></td><td><%= session[:company] %></td>	
+		</tr>
+		<tr>
+		    <td><strong>Phone Number: </strong></td><td><%= session[:phone] %></td>	
+			<td><strong>Address: </strong></td><td><%= session[:address] %></td>
+	</tr></table>	
+	
+	</TD></TR>
+
+<TR>
+<TD></TD><TD></TD>
+<TD width=100><b>Part Number</b></TD>
+<TD width=100><b>Manufacturer</b></TD>
+<TD width=200><b>Part Description</b></TD>
+<TD></TD>
+<TD><b>Quantity<b></TD>
+<TD nowrap><b> Customer Notes<b></TD>
+</TR>
+<% @products.each do | partArr | %>
+<TR>
+   <% part = partArr[1] %>
+   <%   @picture = Picture.find(:first, :conditions => " name = '" + part.part_no + "-1.jpg'") %>
+   <TD>
+			 <% if @picture %>
+				<img border=0  width=100 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+			 <% else %>
+			 	<img border=0 width=100 src="/images/photo_coming_soon.jpg" />
+		 	 <% end %>
+   </TD>   
+   <TD>   
+   </TD>
+   <TD>
+      <%= part.part_no %>
+   </TD>
+   <TD>
+
+        <%= part.manufacturer %>
+
+   </TD>   
+   <TD>
+        <%= part.description %>
+   </TD>
+
+<TD></TD>
+   <TD>
+    <%= part.get_quantity %>
+   </TD>
+      <TD>
+    <%= part.get_notes %>
+   </TD>
+</TR>
+
+<% end %>
+<TR height=25>
+<TD colspan=8 align=center>
+
+</TD>
+</TD>
+<TD>
+</TD>
+</TR>
+
+<TR>
+	<TD> </TD>
+	<TD> </TD>
+</TR>
+<TR height=30>
+<TD colspan=8 align=center>
+
+</TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD colspan=7 align=center>
+ ** <%= @translator.get_msg(session[:language], "Availability") %> **
+</TD>
+</TD>
+<TD>
+</TD>
+</TR>
+</TABLE>
+</form>
+</CENTER>
+<% else %>
+<%= @translator.get_msg(session[:language], "EmptyCart") %>...
+<% end %>
+</body>

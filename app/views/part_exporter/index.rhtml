@@ -1,0 +1,18 @@
+Select a part classification and hit "Export"<BR>
+<FORM action="/Part_Exporter/export" method="POST">
+  <SELECT id="classification" name="classification">
+  <% @part_classifications.each do | cls | %>
+    <OPTION value="<%= cls.code_value%>"><%= cls.code_id %> </OPTION>
+  <% end %>
+  </SELECT>&nbsp;&nbsp;
+  <INPUT Type="Submit" value="Export">
+</FORM>
+ <TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Home/index">
+      << back to Admin 
+    </A>
+  </TD>
+  </TR>
+</TABLE>

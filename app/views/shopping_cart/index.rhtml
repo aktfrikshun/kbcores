@@ -1,0 +1,141 @@
+<script language="JavaScript" type="text/javascript" src="/javascripts/formval.js"></script>
+<SCRIPT Language="JavaScript">
+  function validateForm() {
+    elem = document.getElementById('cust_name');
+    if (emptyString.test(elem.value)) {
+      alert('Name is required!');
+      return false;
+    }
+    elem = document.getElementById('phone');
+    if (emptyString.test(elem.value)) {
+      alert('Phone number is required!');
+      return false;
+    }    
+	return true;
+  }
+  function validateEmail() {
+    var elem;
+    elem = document.getElementById('email');
+    if (emptyString.test(elem.value)) {
+      alert('Email address is required!');
+      return false;
+    }
+    var email = /^[^@]+@[^@.]+\.[^@]*\w\w$/
+  	if (!email.test(elem.value)) {
+  	  alert('Not a valid email address!');
+      return false;
+  	}
+    return true;
+  }
+</SCRIPT>
+<SCRIPT Language=JavaScript>
+var pWin;
+function openPrintWindow(aUrl) {
+  pWin = window.open(aUrl,"PrintCart","menubar,resizable=y,height=600,width=800");
+  return false;
+  
+ }
+</SCRIPT>
+<TABLE width="100%"  >
+<TR><TD > <A HREF="/Shopping_Cart/previousPage"> << Back to Parts Search</A> </TD>
+<TD  align="right"> 
+ </TD>
+</TR>
+</TABLE>
+
+<CENTER>
+<h2><%= @translator.get_msg(session[:language], "CallToOrder") %></h2>
+</CENTER>
+
+
+
+<% if @products %>
+<CENTER>
+<%= form_tag :controller => "Shopping_Cart", :action => "updateCart" %>
+<TABLE cellpadding=2 cellspacing=2 class=tabletext   style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%" >
+<TR>
+<TD colspan=8 align=center>
+    <br/><br/>	
+	<table><tr>
+		<td><strong>Name: </strong></td><td><input type="text" name="cust_name" id="cust_name" value="<%= session[:cust_name] %>"></td>
+	    <td><strong>Company: </strong></td><td><input type="text" name="company" id="company"  size=60 value="<%= session[:company] %>"></td>	
+		</tr>
+		<tr>
+		    <td><strong>Phone Number: </strong></td><td><input type="text" name="phone" id="phone"  value="<%= session[:phone] %>"></td>	
+			<td><strong>Address: </strong></td><td><input type="text" size=60 name="address" id="address" value="<%= session[:address] %>"></td>
+	</tr></table>
+	<br/><br/><br/><br/>
+ <INPUT TYPE=SUBMIT VALUE="Email order to KB Sales Rep" onclick="return validateForm();" />&nbsp;&nbsp;
+ <INPUT TYPE=BUTTON onclick="return openPrintWindow('/Printer/printCart');" value="<%= @translator.get_msg(session[:language], 'PrintCart') %>" />
+</TD>
+</TR>
+<TR>
+<TD></TD>
+<TD></TD>
+<TD width=100><b>Part Number</b></TD>
+<TD width=100><b>Manufacturer</b></TD>
+<TD width=200><b>Part Description</b></TD>
+<TD></TD>
+<TD><b>Quantity<b></TD>
+<TD><b>Customer Notes<b></TD>
+</TR>
+<% @products.each do | prodArr | %>
+<% if prodArr and prodArr[1] %>
+<%   part = prodArr[1] %>
+<TR>
+   <TD valign="top">
+     <A HREF="/Shopping_Cart/delete_product/<%= part.id %>" onclick="return confirm('Are you sure you want to remove this part from your cart?');"> <IMG border=0 alt="Delete part from cart" src="/images/Delete.gif"> </A>
+   </TD>   
+   <%   @picture = Picture.find(:first, :conditions => " name = '" + part.part_no + "-1.jpg'") %>
+   <TD valign="top">
+			 <% if @picture %>
+				<img border=0  width=100 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+			 <% else %>
+			 	<img border=0 width=100 src="/images/photo_coming_soon.jpg" />
+		 	 <% end %>
+   </TD>
+
+   <TD valign="top">
+      <A HREF=/Part_Details/index/<%= part.id %> ><%= part.part_no %></A>
+   </TD>
+   <TD valign="top">
+
+        <%= part.manufacturer %>
+
+   </TD>   
+   <TD valign="top">
+        <%= part.description %>
+   </TD>
+
+<TD></TD>
+   <TD valign="top">
+    <%= text_field_tag part.id, part.get_quantity, { :style => "width:75px;text-align:right" } %>
+   </TD>
+   <TD valign="top">
+   	<textarea id="<%= part.id %>_notes" name="<%= part.id %>_notes" rows="4" cols="20" ><%= part.get_notes %></textarea>
+   </TD>   
+</TR>
+<% end %>
+<% end %>
+<TR>
+<TD colspan=8 align=center>
+ <INPUT TYPE=SUBMIT VALUE="Email order to KB Sales Rep"  onclick="return validateForm();"  />&nbsp;&nbsp;
+ <INPUT TYPE=BUTTON onclick="return openPrintWindow('/Printer/printCart');" value="<%= @translator.get_msg(session[:language], 'PrintCart') %>" />
+</TD>
+</TR>
+<TR height=30>
+<TD colspan=8 align=center>
+
+</TD>
+</TR>
+<TR>
+<TD colspan=8 align=center>
+ ** <%= @translator.get_msg(session[:language], "Availability") %> **
+</TD>
+</TR>
+</TABLE>
+</form>
+</CENTER>
+<% else %>
+<%= @translator.get_msg(session[:language], "EmptyCart") %>...
+<% end %>

@@ -1,0 +1,118 @@
+<head>
+ <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+</head>
+<body onload="window.print();">
+If this page doesn't automatically print, then choose "File->Print" from the browser menu...<BR><BR>
+Cart printed on <%= Time.now %>
+<BR>
+
+<CENTER>
+
+<h2>Call 1-800-822-2673 to Order</h2>
+</CENTER>
+
+
+
+<% if @products %>
+<CENTER>
+<%= form_tag :controller => "Shopping_Cart", :action => "updateCart" %>
+<TABLE cellpadding=2 cellspacing=2 class=tabletext bgcolor="#FFFFFF" style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%" >
+<TR>
+<TD></TD>
+<TD width=100><b>Part Number</b></TD>
+<TD width=100><b>Part Name</b></TD>
+<TD width=200><b>Part Description</b></TD>
+<%		
+ @customer_id = session[:customer]
+ @customer = nil
+ if (@customer_id) 
+         @customer = Account.find(@customer_id) 
+ end 
+%>
+<% if (@customer) %>
+<TD width=100><b>Discounted Price</b></TD>
+<% else %>
+<TD width=100 ><b>Retail Price</b></TD>
+<% end %>
+<TD><b>Quantity<b></TD>
+</TR>
+<% @tot_price = 0.00 %>
+<% @products.each do | partArr | %>
+<TR>
+   <% part = partArr[1] %>
+   <TD>
+    
+   </TD>
+   <TD>
+      <%= part.part_number %>
+   </TD>
+   <TD>
+
+        <%= part.product_type %>
+
+   </TD>   
+   <TD>
+      <% @desc = Description.find(:first, :conditions => ' product_id = ' + part.id.to_s ) %>
+      <% if @desc %>        
+         <%= @desc.description %>
+      <% end %>
+   </TD>
+
+   <% if @customer %>
+   <TD>
+      <%= number_to_currency(( part.level_1_price  ) - (( part.level_1_price  ) * @customer.discount))%>  
+      <% @tot_price += (part.get_quantity * (( part.level_1_price ) - (( part.level_1_price  ) * @customer.discount)))%>
+   </TD>
+   <% else %>
+      <TD>
+     <% @tot_price += (part.get_quantity * ( part.level_1_price * 1.25 )) %>
+     <%= number_to_currency(( part.level_1_price * 1.25 ))%>
+   </TD>
+   
+   <% end %>
+   <TD>
+    <%= part.get_quantity %>
+   </TD>
+</TR>
+
+<% end %>
+<TR height=25>
+<TD colspan=7 align=center>
+
+</TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD colspan=7 align=center>
+ <b>Order Total: </b> <%= number_to_currency(@tot_price) %>
+</TD>
+</TD>
+<TD>
+</TD>
+</TR>
+
+<TR height=30>
+<TD colspan=7 align=center>
+
+</TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD colspan=7 align=center>
+ ** Subject to availability.  We reserve the right to adjust prices and terms based on Customer credit. **
+</TD>
+</TD>
+<TD>
+</TD>
+</TR>
+</TABLE>
+
+</CENTER>
+<% else %>
+There are no items in your cart...
+<% end %>
+</body>

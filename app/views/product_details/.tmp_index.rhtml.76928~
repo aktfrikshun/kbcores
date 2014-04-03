@@ -1,0 +1,102 @@
+
+<% if @part %>
+<%		
+	       session[:next_page] = "Product_Details"
+	       session[:next_action] = "index"
+	       session[:next_id] = @part.id
+ %>
+ 
+<TABLE >
+<tr>
+<TD>
+<TABLE  cellpadding=2 cellspacing=2 class=tabletext style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%" >
+  <TR>
+     <TD>
+         <b>Manufacturer:</b>
+     </TD>
+     <TD>
+     	<%= (CommonCode.new).get_mfr_label(@part.mfr).upcase%>
+     </TD>
+  </TR>
+  <TR>
+     <TD>
+         <b>Family:</b>
+     </TD>
+     <TD>
+     	<%= @part.family %>
+     </TD>
+  </TR>
+  <TR>
+     <TD>
+         <b>Part Number:</b>
+     </TD>
+     <TD>
+     	<%= @part.part_number%>
+     </TD>
+  </TR>
+  <TR>
+     <TD>
+         <b>Description:</b>
+     </TD>
+     <TD>
+        <% @desc = Description.find(:first,:conditions => " product_id = " + @part.id.to_s + " and language_code = 'EN'") %>
+     	<% if @desc %>
+     	<%= @desc.description %>
+     	<% end %>
+     </TD>
+  </TR> 
+  <TR>
+     <TD>
+         
+     </TD>
+     <TD>
+      	<%= @part.notes %>
+     </TD>
+  </TR>     
+  <TR>
+     <TD>
+         <b>Type:</b>
+     </TD>
+     <TD>
+     	<%= @part.product_type %>
+     </TD>
+  </TR> 
+</TABLE >
+
+
+
+<TABLE class=tabletext width="100%"><TR>
+     <TD colspan=2>
+        <%= link_to "<< Back to results",{ :controller => "Product", :action => "refresh" } %>
+     </TD>
+  </TR>
+</TABLE> 
+</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<% if (@prod_pictures) and (@prod_pictures.length > 0) %>
+<TABLE cellpadding=2 cellspacing=2 bgcolor="#FFFFFF" style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%">
+<TR>
+	<%   @prod_pictures.each do |pp| %>
+		<%   @picture = Picture.find(pp.picture_id) %>
+		<TD valign=top >
+			 <% if @picture %>
+				 <b><span><%= @picture.comment %></span></b><BR><br>
+				 <A HREF="/Product_Details/zoom_image/<%= @part.id %>?picture=<%= @picture.id %>">
+				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size"width=250 src="/Admin_Product_Edit/picture/<%= pp.picture_id %>" />
+				 </A>
+		 	 <% end %>
+	     </TD>
+	<%   end %>
+</TR>
+</TABLE>
+<% else %>
+	<b>No pictures for this part</b>
+<% end %>    
+    
+
+<% else %>
+   Part <%= @part_id %> not found
+<% end %>

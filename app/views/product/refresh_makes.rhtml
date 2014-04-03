@@ -1,0 +1,24 @@
+              <b>Make</b><BR>
+        <select onChange="selectionMakeChanged();" name="makes[]" id="makes[]"    style="width:200">
+        <option value="ALL">ALL</option>
+        <% @makes.each do |mk| %>
+   		     <option value=<%= mk.MAKENAME %> ><%= mk.MAKENAME %></option>          
+        <% end %>
+      </select>	
+            <INPUT TYPE=HIDDEN name="MakeSelection" id="MakeSelection">
+       <%= observe_field("MakeSelection",
+ 					:frequency => 0.25,
+ 					:update => :modelsdiv,
+ 					:url => { :action => :refresh_models },
+ 					:with => "'year='+ escape($('YearSelection').value) + '&make=' + escape($('MakeSelection').value)") 					
+ 					 %>
+   	<DIV id="modelsdiv" name="modelsdiv">
+       		<b>Model</b><BR>
+       		<select name="models[]" id="models[]"    style="width:200">
+       		  <option value="ALL">ALL</option>
+       		<% @models.each do |md| %>
+   		     		<option value=<%= md.MODELNAME %> ><%= md.MODELNAME %></option>          
+        	<% end %>
+          </select>	
+      </DIV> 					 
+

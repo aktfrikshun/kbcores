@@ -1,0 +1,51 @@
+
+
+<table border="0" class=tabletext width=100% >
+<tr>
+<td>Page <%= @this_page.page_num %> of <%= @this_page.get_num_pages %></td><td></td>
+</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class=tabletext width=100%  bgcolor="#FFFFFF" style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%"> 
+<tr> 
+<td  style="color: #000000" width="10"> </td>
+<td  style="color: #000000"><i><b>Part Number</b></i></td> 
+<td  style="color: #000000"><i><b>Part Type</b></i></td>
+<td  style="color: #000000"><i><b>Description</b></i></td>
+<td  style="color: #000000"><p align="center"><i><b>Price</b></i></td>
+<td  style="color: #000000"><i><b>Cart Add Date</b></i></td>
+</tr>
+ <% @prodCount = @this_page.start - 1 %>
+ <% @items.each do |item| %>  
+  <% @product = Product.find(item.product_id) %>
+  <% @prodCount = @prodCount + 1 %>
+  <% if (@prodCount % 2) == 0 %>
+<tr style="height:24px">
+  <% else %>
+<tr bgcolor="#DDDDDD" style="height:24px">
+  <% end %>
+<td style="color: #000000"><%= @prodCount %>.  </td>
+<td style="color: #000000">
+<%=  @product.part_number %>
+</td> 
+<td style="color: #000000"><%= @product.classification %></td> 
+<td style="color: #000000">
+  <% @desc = Description.find(:first,:conditions => " product_id = " + @product.id.to_s + " and language_code = 'EN'") %>
+  <% if @desc %>
+     	<%= @desc.description %>
+  <% end %>
+</td> 
+<td align=right style="color: #000000">
+   <% @customer = Account.find(item.account_id) %>
+   <% if @customer %>
+      <%= number_to_currency(( @product.level_1_price  ) - (( @product.level_1_price  ) * @customer.discount))%>  
+   <% else %>
+      <%= number_to_currency(( @product.level_1_price * 1.25 )) %>
+   <% end %>
+
+</td> 
+<td align=center style="color: #000000">
+<%= item.add_date %>
+</td>
+</tr> 
+<% end %> 
+</table>

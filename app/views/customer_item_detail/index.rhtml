@@ -1,0 +1,48 @@
+<table width=100% class="tabletext">
+<TR>
+<TD width=350>
+<span class="tabletext" style="font-size: 105%">
+Customer <%= @customer.company_name %> shopping history
+</span>
+</TD>
+<TD valign=top align=right style="font-size: 105%">
+  <A HREF=/Customer_Item> Back to Customer Cart History </A>
+</TD>
+</TR>
+</TABLE>
+<hr width=100%>
+<div id=page_view>
+<% if @this_page.tot_items == 0 %>
+   No items found!
+<% else %>
+  <table width=100%>
+   <tr>
+    <td>
+     <span class=tabletext>Found <%= @this_page.tot_items %> customer items</span>
+    </td>
+    <td align=right> 
+     <%= link_to_remote "< Previous", :update => "results",:url => {:action => "prev_page" } %> | <%= link_to_remote "Next >", :update => "results",:url => {:action => "next_page" } %>
+    </td>
+   </tr>
+  </table>
+   <div id=results>
+      <%= render_component(:controller => "Customer_Item_Detail", :action  => "show_results") %>
+   </div>
+   <span class="tabletext">
+     Remove Shopping History 
+        <A HREF="/Customer_Item_Detail/remove_history/<%= @customer.id %>?days=0" onclick="return confirm('Are you sure?');">All</A> |
+         <A HREF="/Customer_Item_Detail/remove_history/<%= @customer.id %>?days=60" onclick="return confirm('Are you sure?');"> > 60 days </A> |
+         <A HREF="/Customer_Item_Detail/remove_history/<%= @customer.id %>?days=90" onclick="return confirm('Are you sure?');"> > 90 days </A> |
+         <A HREF="/Customer_Item_Detail/remove_history/<%= @customer.id %>?days=180" onclick="return confirm('Are you sure?');"> > 180 days </A> |
+         <A HREF="/Customer_Item_Detail/remove_history/<%= @customer.id %>?days=360" onclick="return confirm('Are you sure?');"> > 360 days </A> 
+         
+   </span>
+   <%= hidden_field("this_page","page_num") %>
+   <%= hidden_field("this_page","tot_items") %>
+   <%= hidden_field("this_page","page_size") %>
+   <%= hidden_field("this_page","start") %>  
+   <%= hidden_field("this_page","num_pages") %>  
+   
+</div>    
+<% end %>
+

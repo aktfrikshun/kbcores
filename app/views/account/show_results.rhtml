@@ -1,0 +1,37 @@
+
+
+<table border="0" class=tabletext width=100% >
+<tr>
+<td>Page <%= @this_page.page_num %> of <%= @this_page.get_num_pages %></td><td></td>
+</tr>
+</table>
+<table border="0" class=tabletext width=100% > 
+<tr> 
+<td width="10"> </td>
+<td ><p align="center"><i><b>Account Number</b></i></td> 
+<td ><p align="center"><i><b>Login</b></i></td> 
+<td ><p align="center"><i><b>Password</b></i></td>
+<td ><p align="center"><i><b>ZipCode</b></i></td> 
+<td ><p align="center"><i><b>Discount</b></i></td>
+<td ><p align="center"><i><b>Company Name</b></i></td>
+<td ><p align="center"></td>
+</tr>
+ <% @accountCount = @this_page.start - 1 %>
+ <% @accounts.each do |acct| %>  
+  <% @accountCount = @accountCount + 1 %>
+<tr>
+<td><%= @accountCount %>.  </td>
+<td>
+<%= link_to acct.account_number, { :controller => "Account", :action => "edit", :id => acct } %>
+</td> 
+<td><%= acct.user %></td>
+<td><%= acct.password %></td>
+<td><%= acct.postal_code %></td> 
+<td><%= acct.discount %></td> 
+<td><%= acct.company_name %></td> 
+<td>
+<%= link_to "remove", { :controller => "Account", :action => "delete", :id => acct } %>
+</td>
+</tr> 
+<% end %> 
+</table>

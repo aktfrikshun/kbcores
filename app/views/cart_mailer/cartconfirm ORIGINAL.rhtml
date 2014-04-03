@@ -1,0 +1,171 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<style type="text/css">
+body {
+	
+}
+.bodytitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FF6633;
+}
+.bodytxt {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+.botnav {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #999999;
+	font-style: italic;
+	line-height: normal;
+	text-align: center;
+}
+
+a:link {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: bold; color: #ff9900; text-decoration: none; line-height: 14px}
+a:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: bold; color: #ff6600; text-decoration: underline; line-height: 14px}
+a:active {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: bold; color: #ff9900; text-decoration: none; line-height: 14px}
+a:visited {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: bold; color: #ff9900; text-decoration: none; line-height: 14px}
+.subtitle {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #FF6600;
+}
+.tabletext {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+}
+ul {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+ol {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+sup{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8px;
+	font-weight: normal;
+	color: #000000;
+}
+P  {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+.subtitlelink {
+
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #0066CC;
+}
+
+</style>
+</head>
+<body bgcolor=#FFFFFF leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<!-- begin main table -->
+
+<span class="bodytitle"><br>
+KBCores Customer <%= @contact.first_name %> <%= @contact.last_name %> with <%= @customer.company_name %> ( <%= @customer.account_number %> ) has created the below shopping cart.   You may contact this customer via phone: <%= @contact.phone %> or email: <%= @contact.email %>.</span></p>
+<p>
+<% if @products %>
+<CENTER>
+
+<TABLE cellpadding=2 cellspacing=2 class=tabletext bgcolor="#FFFFFF" style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%" >
+<TR>
+
+<TD width=100><b>Part Number</b></TD>
+<TD width=100><b>Part Type</b></TD>
+<TD width=200><b>Part Description</b></TD>
+<% if (@customer) %>
+<TD width=100><b>Discounted Price</b></TD>
+<% else %>
+<TD width=100 ><b>Retail Price</b></TD>
+<% end %>
+<TD><b>Quantity<b></TD>
+</TR>
+<% @tot_price = 0.00 %>
+<% @products.each do | partArr | %>
+<TR>
+   <% part = partArr[1] %>
+   <TD>
+      <A HREF=http://kbcores.dnsalias.com/Product_Details/index/<%= part.id %> ><%= part.part_number %></A>
+   </TD>
+   <TD>
+
+        <%= part.product_type %>
+
+   </TD>   
+   <TD>
+      <% @desc = Description.find(:first, :conditions => ' product_id = ' + part.id.to_s ) %>
+      <% if @desc %>        
+         <%= @desc.description %>
+      <% end %>
+   </TD>
+
+   <% if @customer %>
+   <TD>
+      <%= number_to_currency(( part.level_1_price  ) - (( part.level_1_price  ) * @customer.discount))%>  
+      <% @tot_price += (part.get_quantity * (( part.level_1_price  ) - (( part.level_1_price  ) * @customer.discount)))%>
+   </TD>
+   <% else %>
+      <TD>
+     <% @tot_price += (part.get_quantity * ( part.level_1_price * 1.25 )) %>
+     <%= number_to_currency(( part.level_1_price * 1.25 ))%>
+   </TD>
+   
+   <% end %>
+   <TD>
+     <%= part.get_quantity %>
+   </TD>
+
+</TR>
+
+<% end %>
+<TR>
+<TD colspan=7 align=center>
+ <b>Order Total: </b> <%= number_to_currency(@tot_price) %>
+</TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD colspan=7 align=center>
+ ** Subject to availability.  We reserve the right to adjust prices and terms based on Customer credit. **
+</TD>
+</TD>
+<TD>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+<% else %>
+There are no items in your cart...
+<% end %>
+
+</body>
+</html>
+
+
+
+

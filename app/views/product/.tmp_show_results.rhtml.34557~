@@ -1,0 +1,54 @@
+
+
+<table border="0" class=tabletext width=100% >
+<tr>
+<td>Page <%= @this_page.page_num %> of <%= @this_page.get_num_pages %></td><td></td>
+</tr>
+</table>
+<table border="0" class=tabletext width=100%  bgcolor="#FFFFFF" style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%"> 
+<tr> 
+<td width="10"> </td>
+<td ><i><b>Part Number</b></i></td> 
+<td ><i><b>Part Type</b></i></td>
+<td ><i><b>Description</b></i></td>
+<td ><p align="center"><i><b>Thumbnail</b></i></td>
+</tr>
+ <% @prodCount = @this_page.start - 1 %>
+ <% @products.each do |product| %>  
+  <% @prodCount = @prodCount + 1 %>
+  <% if (@prodCount % 2) == 0 %>
+<tr bgcolor="#999999" style="height:24px">
+  <% else %>
+<tr bgcolor="#DDDDDD" style="height:24px">
+  <% end %>
+<td><%= @prodCount %>.  </td>
+<td>
+<%= link_to product.part_number, { :controller => "Product_Details", :id => product } %>
+</td> 
+<td><%= product.classification %></td> 
+<% @desc = Description.find(:first, :conditions => ' product_id = ' + product.id.to_s ) %>
+<% if @desc == nil %>
+  <td> </td>
+<% else %>
+  <td><%= @desc.description %></td> 
+<% end %>
+
+<td align=center height=75>
+<% @part_picture = ProductPicture.find(:first,:conditions => "   rel_type = 'GROUP' and product_id = " + product.id.to_s ) %>
+<% if @part_picture %>
+<% else %>
+  <% @part_picture = ProductPicture.find(:first,:conditions => "   rel_type = 'DETAIL' and product_id = " + product.id.to_s ) %>
+<% end %>
+<% if @part_picture %>
+<%   @picture = Picture.find(@part_picture.picture_id) %>
+<%   if @picture %>
+ <A HREF=/Product_Details/index/<%= product.id %>><img border=0  height=75 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A>
+<%   else %>
+No picture available
+<%   end %>
+<% end %>
+</td> 
+
+</tr> 
+<% end %> 
+</table>

@@ -1,0 +1,67 @@
+
+
+<%		
+ @customer_id = session[:customer]
+ @customer = nil
+ if (@customer_id) 
+         @customer = Account.find(@customer_id) 
+ end 
+%>
+<table border="0" class=tabletext width=100% >
+<tr>
+<td><%= @translator.get_msg2(session[:language], "PAGE :arg1 OF :arg2", @this_page.page_num.to_s, @this_page.get_num_pages.to_s) %></td><td></td>
+</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width=100%  bgcolor="#FFFFFF" style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%"> 
+<tr bgcolor="#999999" style="height:24px"> 
+<td width="25" color="#000000" > </td>
+<td  style="color: #000000" ><i><b>Mfr</b></i></td> 
+<td  style="color: #000000"  ><i><b>Family</b></i></td> 
+<td  style="color: #000000"  ><i><b>Part Number</b></i></td> 
+<td  style="color: #000000"  ><i><b>Part Name</b></i></td>
+<td  style="color: #000000"  ><i><b>Description</b></i></td>
+<!-- NOTE: REMOVE PRICING
+<td  style="color: #000000"  ><i><b>Price</b></i></td>
+-->
+
+<td style="color: #000000"  ></td>
+</tr>
+ <% @prodCount = @this_page.start - 1 %>
+ <% @products.each do |product| %>  
+  <% @prodCount = @prodCount + 1 %>
+  <% if (@prodCount % 2) == 0 %>
+<tr bgcolor="#BBBBBB" style="height:24px">
+  <% else %>
+<tr bgcolor="#DDDDDD" style="height:24px">
+  <% end %>
+<td style="color: #000000" ><%= @prodCount %>.  </td>
+<td style="color: #000000" ><%= (CommonCode.new).get_mfr_label(product.mfr).upcase %> </td>
+<td style="color: #000000" ><%= product.family %> </td>
+<td style="color: #000000" >
+<%= link_to product.part_number, { :controller => "Product_Details", :id => product } %>
+</td> 
+<td style="color: #000000" ><%= product.product_type %></td>
+<% @desc = Description.find(:first, :conditions => ' product_id = ' + product.id.to_s ) %>
+<% if @desc == nil %>
+  <td> </td>
+<% else %>
+  <td style="color: #000000" ><%= @desc.description %></td> 
+<% end %>
+
+<td>
+</td>
+<!-- NOTE: REMOVE PRICING
+<td align=right style="color: #000000" >
+<% if @customer %>
+  <%= number_to_currency(( product.level_1_price ) - (( product.level_1_price  ) * @customer.discount)) %>
+<% else %>
+  <%= number_to_currency(( product.level_1_price * 1.25 )) %>
+<% end %>
+</td>
+-->
+
+
+</tr> 
+
+<% end %> 
+</table>

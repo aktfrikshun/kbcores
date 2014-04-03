@@ -1,0 +1,27 @@
+
+
+<span class=bodytitle style="font-size: 95%">
+  Please select one of the below Administration tasks or <a href="/Login/logout">log out</a>:
+</span>
+<BR><BR>
+<BR>
+<P>
+<UL>
+<LI> <%= link_to "Maintain Picture Library", :controller => "Admin_Pictures", :action => "list" %>
+<LI> <%= link_to "Maintain Parts", :controller => "Admin_Product", :action => "index" %>
+<LI> Steps for bulk upload of parts and pictures:
+<OL>
+<LI> Sftp images to kbcores.com<BR> user = kbcapp@rivervalleyrecycling.net, password = kbcores2012, folder = /
+<LI> Execute ( click link )&nbsp;&nbsp; <%= link_to "Load pictures to database", :controller => "Upload_Pictures", :action => "index" %>
+<LI> Execute ( click link )&nbsp;&nbsp; <%= link_to "Upload parts spreadsheet", :controller => "Upload_Parts", :action => "index" %>
+</OL>
+<LI> <A HREF="/Part_Exporter/index">Export parts catalog to Excel</A>
+<LI> <%= link_to "Maintain Customer", :controller => "Account", :action => "list" %>
+<LI> <%= link_to "Maintain Users", :controller => "User", :action => "list" %>
+<LI> <%= link_to "Update Support Email", :controller => "Admin_Mail", :action => "index" %>
+<LI> <%= link_to "View Customer Shopping History", :controller => "Customer_Item", :action => "index" %>
+<LI> <%= link_to "View Tracking Report", :controller => "Tracking_Report", :action => "index" %>
+<LI><A HREF="http://www.google.com/analytics">KBCores Google Analytics</A> -- logon as kbcores2@frikshun.com / kbc0r3s
+</UL>
+</P>
+

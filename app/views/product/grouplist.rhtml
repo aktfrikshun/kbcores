@@ -1,0 +1,502 @@
+<% @nopict = Picture.find(:first,:conditions => "name = 'nopicture.jpg'") %>
+<table width=100% class="tabletext">
+<TR>
+<TD width=350>
+<span class="tabletext" style="font-size: 105%">
+<b>Parts in family <%= @family.name %></b><BR>
+Click on the below part pictures to view detailed part information.  Mouse over a part picture to see the part number and description.
+</span>
+</TD>
+<TD valign=top align=right style="font-size: 105%">
+<A HREF=/CatalogSelectFamily/<%= session[:product_type] %>/<%= session[:last_make_code] %> ><< Back to select part family</A>
+</TD>
+</TR>
+</TABLE>
+<hr width=100%>
+<% if @prodcnt > 0  %>
+<TABLE  bgcolor="#FFFFFF" style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%">
+<TR ><TD valign=middle align=center colspan=2>
+<% if @product1 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product1.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product1.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product1.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product1.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product1.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product1.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product2 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product2.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product2.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product2.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product2.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product2.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product2.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product3 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product3.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product3.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product3.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product3.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product3.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product3.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product4 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product4.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product4.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product4.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product4.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product4.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product4.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product5 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product5.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product5.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product5.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product5.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product5.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product5.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product6 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product6.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product6.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product6.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product6.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product6.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product6.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product7 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product7.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product7.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product7.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product7.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product7.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product7.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product8 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product8.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product8.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product8.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product8.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product8.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product8.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product9 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product9.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product9.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product9.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product9.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product9.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product9.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product10 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product10.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product10.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product10.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product10.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product10.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product10.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product11 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product11.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product11.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product11.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product11.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product11.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product11.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product12 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product12.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product12.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product12.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product12.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product12.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product12.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product13 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product13.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product13.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product13.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product13.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product13.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product13.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product14 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product14.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product14.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product14.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product14.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product14.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product14.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product15 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product15.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product15.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product15.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product15.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product15.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product15.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product16 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product16.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product16.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product16.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product16.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product16.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product16.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product17 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product17.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product17.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product17.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product17.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product17.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product17.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product18 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product18.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product18.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product18.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product18.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product18.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product18.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product19 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product19.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product19.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product19.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product19.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product19.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product19.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product20 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product20.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product20.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product20.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product20.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product20.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product20.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+<% if @product21 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product21.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product21.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product21.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product21.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product21.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product21.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+<% if @product22 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product22.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product22.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product22.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product22.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product22.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product22.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+<% if @product23 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product23.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product23.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product23.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product23.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product23.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product23.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+<% if @product24 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product24.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product24.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product24.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product24.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product24.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product24.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+<% if @product25 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product25.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product25.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product25.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product25.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product25.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product25.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+<% if @product26 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product26.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product26.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product26.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product26.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product26.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product26.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+<% if @product27 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product27.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product27.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product27.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product27.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product27.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product27.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+<% if @product28 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product28.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product28.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product28.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product28.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product28.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product28.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+<% if @product29 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product29.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product29.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product29.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product29.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product29.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product29.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+<% if @product30 %>
+<%  @desc = Description.find(:first, :conditions => " product_id = " + @product30.id.to_s  ) %>
+<%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'FAMILY' and product_pictures.product_id = " + @product30.id.to_s + "  ) " ) %>
+<% if @picture == nil %>
+    <%  @picture = Picture.find(:first, :conditions => "id in ( select product_pictures.picture_id from product_pictures where  rel_type = 'GROUP' and product_pictures.product_id = " + @product30.id.to_s + "  ) " ) %>
+<% end %>
+
+    <A HREF=/Product/list/<%= @family.id %>?part_number=<%= @product30.part_number %>>
+    <% if @picture %>
+      <img border="0" height=75 alt="<%= @product30.product_type %>" src=/Admin_Product_Edit/picture/<%= @picture.id %> >
+    <% else %>
+      <img border="1 px solid black" height=75 alt="<%= @product30.product_type %>" src=/Admin_Product_Edit/picture/<%= @nopict.id %> >
+    <% end %>
+    </A>
+<% end %>
+
+</TD></TR>
+<TR height=25><TD colspan=2 ></TD></TR>
+<% if session[:product_type] == "transmissions" %>
+<TR>
+<TD align=center><A HREF=/Product/assemblies/<%= @family.id %> >View Assemblies</A></TD>
+<TD align=center><A HREF=/Product/miscparts/<%= @family.id %> >View Misc/Other Parts</A></TD>
+</TR>
+<% end %>
+</TABLE>
+<% else %>
+  <BR><BR> <span class="bodytitle"><b>These parts are coming soon.  Call us at (800) 822-2673 for pricing and availability...</b></span>
+<% end %>
+

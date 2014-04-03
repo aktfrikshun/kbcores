@@ -1,0 +1,14 @@
+   	<b><%= @translator.get_msg(session[:language], "PART TYPE") %></b><BR>
+        <select   name="part_types[]" id="part_types[]"    style="width:300">
+              		  <option value="ALL">ALL</option>
+        <% @part_types.each do |co| %>
+   		     <option value="<%= co.code_id %>" ><%= co.code_value %></option>          
+        <% end %>
+      </select>	
+      <INPUT TYPE=HIDDEN name="PartTypeSelection" id="PartTypeSelection">
+      <%= observe_field("PartTypeSelection",
+ 					      :frequency => 0.25,
+ 					      :update => :partnamesdiv,
+ 					      :url => { :action => :refresh_partnames },
+ 					      :with => "'mfr='+ escape($('MfrSelection').value) + '&family=' + escape($('FamilySelection').value) + '&part_type=' + escape($('PartTypeSelection').value)")
+ 					      %>			

@@ -1,0 +1,76 @@
+
+<% if @part %>
+<span class="tabletext"><b> Choose Pictures for Part <%= @part.part_number %> </b></span><BR><BR>
+<%= form_tag :controller => "Admin_Product_Edit", :action => "add_picture", :id => @part %>
+<%= hidden_field_tag "id", @part.id %>
+<TABLE class=tabletext style="font-size: 105%;" >
+  <TR>
+     <TD valign=top >
+         <b>Picture Name:</b>
+     </TD>
+     <TD>
+     	<%= text_field_tag "picture_name" %>
+     </TD>
+  </TR>
+  <TR>
+     <TD valign=top >
+         <b>Type:</b>
+     </TD>
+     <TD>
+     	<SELECT name="picture_type" id="picture_type" >
+     	      <OPTION value="FAMILY">FAMILY ( Page 1 )</OPTION>
+    	      <OPTION value="GROUP">GROUP ( Page 2 )</OPTION>
+    	      <OPTION value="DETAIL">DETAIL ( Page 3 )</OPTION>    	           	      
+     	</SELECT>
+     </TD>
+  </TR> 
+
+  <TR><TD colspan=2 height=20></TD></TR>
+  <TR>
+  <TD colspan=2 align="right">
+    <INPUT type="Submit" value="Add Picture">
+  </TD>
+  </TR>
+   
+</TABLE > 
+</form>
+	<TABLE class=tabletext style="font-size: 10pt;" width=100% cellspacing=0 cellpadding=0 >
+	
+	  <TR><TD><b>Name</b></TD><TD><b>Title</b></TD><TD><b>Type</b></TD><TD></TD><TD></TD></TR>
+      <% @product_pictures.each do |pp| %>
+       <% @picture = Picture.find(:first, :conditions => " id = " + pp.picture_id.to_s ) %>
+       <% if @picture %>
+      	<TR>
+      			<TD><%= @picture.name %></TD>
+     			<TD><%= @picture.comment %></TD>      			
+      			<TD><%= pp.rel_type %></TD>
+       			<TD><img border=0 height=50 src="/Admin_Pictures/picture/<%= @picture.id %>" /></TD>
+      			<TD><A HREF="/Admin_Product_Edit/remove_picture/<%= @part.id %>?picture_id=<%= pp.id %>"> remove </A> </TD> 
+      	</TR>
+       <% else %>
+         <% pp.destroy %>
+       <% end %>
+      <% end %>	
+	</TABLE>
+	
+	<BR>
+<BR>
+<TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Product_Edit/index/<%= @part.id%>">
+       << Edit Part 
+    </A>
+    &nbsp;&nbsp;|&nbsp;&nbsp;    
+  	<A HREF="/Admin_Product/list">
+       Product Administration >>
+    </A>
+
+    
+    
+   </TD>
+  </TR>
+</TABLE>
+<% else %>
+   Part not found
+<% end %>

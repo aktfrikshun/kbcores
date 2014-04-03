@@ -1,0 +1,21 @@
+<%= form_tag :controller => "login", :action => "login_cust" %>
+<BR>
+<BR>
+
+<TABLE class=tabletext style="font-size: 105%" >
+  <TR>
+    <TD><b>Login:<b></TD><TD><%= text_field_tag :user_id %></TD>
+  </TR>
+  <TR>
+    <TD><b>Password:<b></TD><TD><%= password_field_tag :password %></TD>
+  </TR>
+  <TR>
+    <TD><INPUT TYPE=SUBMIT VALUE="Login"></TD>
+  </TR>
+</TABLE>
+<BR>
+<BR>
+<span class=tabletext ><font color=Red><%= @msg %></font></span>
+<BR>
+<BR>
+</form>

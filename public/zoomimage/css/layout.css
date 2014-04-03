@@ -1,0 +1,8 @@
+
+.lightsGal,
+.bwGal,
+.customGal {
+	display: block;
+	margin: 0 10px 10px 0;
+    cursor: url("/zoomimage/images/zoomin.cur"), default;
+}

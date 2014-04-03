@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="680"
+   name=""
+   committed-date="2006-06-30T11:05:36.322027Z"
+   url="svn://216.27.81.106:8080/KBCores/trunk/code/public/flash"
+   last-author="aktaylor"
+   kind="dir"
+   repos="svn://216.27.81.106:8080"
+   revision="703"/>
+<entry
+   committed-rev="680"
+   name="advnewstic.swf"
+   text-time="2006-04-24T10:16:09.334000Z"
+   committed-date="2006-06-30T11:05:36.322027Z"
+   checksum="ccb2f0c9e6769922373afa47798a603c"
+   last-author="aktaylor"
+   kind="file"
+   prop-time="2006-06-24T22:17:41.224185Z"/>
+</wc-entries>

@@ -1,0 +1,19 @@
+<table border="0" class=tabletext width=100% >
+<tr>
+<td>Page <%= @this_page.page_num %> of <%= @this_page.get_num_pages %></td><td></td>
+</tr>
+</table>
+	<TABLE class=tabletext style="font-size: 10pt;" width=100% cellspacing=0 cellpadding=0 >
+	
+	  <TR><TD><b>Application Id</b></TD><TD><b>Year</b></TD><TD><b>Make</b></TD><TD><b>Model</b></TD><TD><b>Submodel</b></TD><TD></TD></TR>
+      <% @product_applications.each do |pa| %>
+      	<TR>
+      			<TD><%= pa.aaia_id %></TD>
+      			<TD><%= pa.year %></TD>
+       			<TD><%= pa.make %></TD>
+      			<TD><%= pa.model %></TD> 
+      			<TD><%= pa.submodel_id %></TD>  
+      			<TD><%= link_to "remove", { :action => "deleteProductApplication", :id => pa } %></TD>    			      			
+      	</TR>
+      <% end %>	
+	</TABLE>

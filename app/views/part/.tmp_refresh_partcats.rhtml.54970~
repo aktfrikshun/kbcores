@@ -1,0 +1,12 @@
+                <b><%= @translator.get_msg(session[:language], "PART CATEGORY") %></b>
+                <BR>
+                <select name="part_cats[]" id="part_cats[]">
+                    <% get_part_categories_for_type(@part_type).each do |co| %>
+                    <% if co == session[:ls_cats] %>
+                    <option selected value="<%= co.upcase %>"><%= co %></option>
+                    <% else %>
+                    <option value="<%= co.upcase %>"><%= co %></option>
+                    <% end %>
+                    <% end %>
+                </select>
+                <INPUT TYPE=HIDDEN name="PartCatSelection" id="PartCatSelection">

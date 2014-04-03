@@ -1,0 +1,176 @@
+<SCRIPT language="javascript">
+    function getSelectedValues(select){
+        var r = new Array();
+        for (var i = 0; i < select.options.length; i++) 
+            if (select.options[i].selected) 
+                r[r.length] = select.options[i].value;
+        return r;
+    }
+    
+    function selectionPartTypeChanged(){
+        var elem = document.getElementById("PartTypeSelection");
+        var parttypes = document.getElementById("part_types[]");
+        var sels = getSelectedValues(parttypes);
+        
+        var commaStr = "";
+        var resultStr = "";
+        for (var i = 0; i < sels.length; i++) {
+            resultStr += commaStr + "'" + sels[i] + "'";
+            commaStr = ", ";
+        }
+        
+        elem.value = resultStr;
+    }
+</SCRIPT>
+<%= form_remote_tag( :update => "page_view",
+:url => {:action => "search" } ) %>
+<TABLE class=tabletext style="font-size: 10pt;">
+    <TR>
+        <TD valign=top nowrap>
+            <TABLE cellpadding=5 cellspacing=5>
+                <TR>
+                    <TD nowrap>
+                        <%= @translator.get_msg(session[:language], "Part Type") %>
+                    </TD>
+                    <TD>
+                        <DIV id="parttypesdiv" name="parttypesdiv">
+                            <select onChange="selectionPartTypeChanged();" name="part_types[]" id="part_types[]">
+                                <option value="ALL">ALL</option>
+                                <% get_part_types.each do |co| %>
+                                <% if co == session[:ls_part_types] %>
+                                <option selected value="<%= co.upcase %>"><%= co %></option>
+                                <% else %>
+                                <option value="<%= co.upcase %>"><%= co %></option>
+                                <% end %>
+                                <% end %>
+                            </select>
+                            <INPUT TYPE=HIDDEN name="PartTypeSelection" id="PartTypeSelection"><%= observe_field("PartTypeSelection",
+                            :frequency => 0.25,
+                            :update => :partcatsdiv,
+                            :url => { :action => :refresh_partcats },
+                            :with => "'part_type='+ escape($('PartTypeSelection').value)") %>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD nowrap>
+                        <%= @translator.get_msg(session[:language], "Part Category") %>
+                    </TD>
+                    <TD>
+                        <DIV id="partcatsdiv" name="partcatsdiv">
+                            <select name="part_cats[]" id="part_cats[]">
+                                <option value="ALL">ALL</option>
+                                <% get_part_categories.each do |co| %>
+                                <% if co == session[:ls_part_cats] %>
+                                <option selected value="<%= co.upcase %>"><%= co %></option>
+                                <% else %>
+                                <option value="<%= co.upcase %>"><%= co %></option>
+                                <% end %>
+                                <% end %>
+                            </select>
+                            <INPUT TYPE=HIDDEN name="PartCatSelection" id="PartCatSelection">
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD nowrap>
+                        <%= @translator.get_msg(session[:language], "Manufacturer") %>
+                    </TD>
+                    <TD>
+                        <DIV id="mfrsdiv">
+                            <select name="mfrs[]" id="mfrs[]">
+                                <option value="ALL">ALL</option>
+                                <% get_mfrs.each do |co| %>
+                                <% if co == session[:ls_mfrs] %>
+                                <option selected value="<%= co.upcase %>"><%= co %></option>
+                                <% else %>
+                                <option value="<%= co.upcase %>"><%= co %></option>
+                                <% end %>
+                                <% end %>
+                            </select>
+                            <INPUT TYPE=HIDDEN name="MfrSelection" id="MfrSelection">
+                        </DIV>
+                    </TD>
+                </TR>
+            </TABLE>
+        </TD>
+        <TD nowrap valign="top">
+            <table cellpadding=5 cellspacing=5>
+                <tr>
+                    <td>
+                        Casting # 
+                    </td>
+                    <td>
+                        <input type="text" id="casting_number" name="casting_number">&nbsp;&nbsp;&nbsp;&nbsp;KB Part # <input type="text" id="part_no" name="part_no" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Cylinders 
+                    </td>
+                    <td nowrap>
+                        <select name="cylinders[]" id="cylinders[]">
+                            <option value="ALL">ALL</option>
+                            <% get_cylinders.each do |co| %>
+                            <% if co == session[:ls_cylinders] %>
+                            <option selected value="<%= co.upcase %>"><%= co %></option>
+                            <% else %>
+                            <option value="<%= co.upcase %>"><%= co %></option>
+                            <% end %>
+                            <% end %>
+                        </select>
+                         &nbsp;&nbsp;&nbsp;&nbsp;Liters&nbsp;&nbsp; <input type="text" id="liters" name="liters"> &nbsp;&nbsp;&nbsp;&nbsp;CCs &nbsp;&nbsp;<input type="text" id="ccs" name="ccs">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Trans Type 
+                    </td>
+                    <td>
+                        <input type="text" id="trans_type" name="trans_type">
+                    </td>
+                </tr>
+            </table>
+        </TD>
+    </TR>
+    <TR>
+        <TD align="left" colspan=2>
+            <INPUT type=SUBMIT value="<%= @translator.get_msg(session[:language], "Search Online Database") %>">
+        </TD>
+    </TR>
+</TABLE>
+</form>
+<hr width=100%>
+<div id=page_view>
+    <% if @this_page.tot_items == 0 %>
+
+	<% else %>
+	    <SCRIPT language="JavaScript">
+	        document.location.href = "#results";
+	    </SCRIPT>
+	    <table width=100%>
+	        <tr>
+	            <td>
+	                <span class=tabletext><%= @translator.get_msg1(session[:language], "FOUND :arg1 PARTS MATCHING SEARCH CRITERIA", @this_page.tot_items.to_s) %></span>
+	            </td>
+	            <td align=right>
+	                <%= link_to_remote "< " + @translator.get_msg(session[:language], "PREVIOUS"), :update => "results",:url => {:action => "prev_lookup_page" } %>| <%= link_to_remote @translator.get_msg(session[:language], "NEXT") + " >", :update => "results",:url => {:action => "next_lookup_page" } %>
+	            </td>
+	        </tr>
+	    </table>
+	    <A name="results"></A>
+	    <div id=results>
+	        <%= render_component(:controller => "Part", :action  => "show_lookup_results"), :rid => @rid %>
+	    </div>
+	    <%= hidden_field("this_page","page_num") %>
+	    <%= hidden_field("this_page","tot_items") %>
+	    <%= hidden_field("this_page","page_size") %>
+	    <%= hidden_field("this_page","start") %>
+	    <%= hidden_field("this_page","num_pages") %>
+	<% end %>
+</div>
+
+<SCRIPT language="javascript">
+    // Update lists
+    selectionPartTypeChanged();
+</SCRIPT>

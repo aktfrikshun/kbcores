@@ -1,0 +1,208 @@
+<script language="JavaScript" type="text/javascript" src="/javascripts/formval.js"></script>
+<SCRIPT Language="JavaScript">
+  function validateContact() {
+    var elem;
+    elem = document.getElementById('contact_first_name');
+    if (emptyString.test(elem.value)) {
+      alert('First Name is required!');
+      return false;
+    }
+    elem = document.getElementById('contact_last_name');
+    if (emptyString.test(elem.value)) {
+      alert('Last Name is required!');
+      return false;
+    }
+    elem = document.getElementById('contact_email');
+    if (emptyString.test(elem.value)) {
+      alert('Email address is required!');
+      return false;
+    }
+    var email = /^[^@]+@[^@.]+\.[^@]*\w\w$/
+  	if (!email.test(elem.value)) {
+  	  alert('Not a valid email address!');
+      return false;
+  	}
+  	elem = document.getElementById('contact_phone');
+  	if (!emptyString.test(elem.value)) {
+  	var telnr = /^\+?[0-9 ()-]+[0-9]$/
+  	 if (!telnr.test(elem.value)) {
+  	  alert('Not a valid phone number!');
+      return false;
+  	 }
+  	}
+  	
+    
+    return true;
+  }
+</SCRIPT>
+<BR>
+<center>
+<table width="790" border="0" cellpadding="6" cellspacing="6">
+  <tr> 
+	<td valign="top" class="cell"> 
+		<table>
+			<tr>
+				<td>
+					<h2><font color="#FFFFFF"><%= @translator.get_msg(session[:language], "ContactKBCores")  %></font></h2>
+	  				<p><%= @translator.get_msg(session[:language], "ThankYou")  %>!<br><br>
+	  				<p><%= @translator.get_msg(session[:language], "Questions")  %> 
+				</td>
+				
+				<td valign="middle" align="center" width="117">
+				</td>
+			</tr>	
+		</table>
+
+	</td>
+  </tr>
+ </table>
+
+<table width="782" border="0" cellpadding="0" cellspacing="0" class="main">
+  <tr>
+  	<td width="20%" align="center">
+  	<table width="97%" cellpadding="4" cellspacing="0" border="0">
+		<tr>
+  	        <td rowspan="2" valign="center" height="200" align="center" class="cellblue"> 
+              <b><%= @translator.get_msg(session[:language], "OfficeHours")  %>:</b><br>&nbsp;<br>
+			  	<%= @translator.get_msg(session[:language], "MondayFriday")  %><br>
+        		8am to 4pm <br>&nbsp;<br>
+				<img src="/images/clock.gif" width="75" height="75">
+			</td>
+		</tr>
+	</table>
+	</td>
+	
+  	<td width="20%" align="center">
+  	<table width="97%" cellpadding="4" cellspacing="0" border="0">
+		<tr>
+			<td class="cellred"><%= @translator.get_msg(session[:language], "Address")  %>:</td>
+		</tr>
+		<tr>
+  			<td height="175" class="cell" valign="top">
+				<div style="text-align:center"><img src="/images/world.gif" width="40" height="41"></div><br>
+				  <img name="space" src="/images/space.gif" width="15" height="1" border="0" alt="">KB Cores, Inc.<br>
+				  <img name="space" src="/images/space.gif" width="15" height="1" border="0" alt="">288 W. South Tec Drive<br>
+				  <img name="space" src="/images/space.gif" width="15" height="1" border="0" alt="">Kankakee, IL 60901
+			</td>
+		</tr>
+	</table>
+	</td>
+	
+	
+  	<td width="20%" align="center">
+  	<table width="97%" cellpadding="4" cellspacing="0" border="0">
+		<tr>
+			<td class="cellred"><%= @translator.get_msg(session[:language], "ContactNumbers")  %>:</td>
+		</tr>
+		<tr>
+  			<td height="175" class="cell" valign="top">
+	  			<div style="text-align:center"><img src="/images/phone.gif" width="40" height="41"></div><br>
+	  			<img name="space" src="/images/space.gif" width="10" height="1" border="0" alt=""><span style="color:red"><%= @translator.get_msg(session[:language], "Tollfree")  %>:</span><br>
+	  			<img name="space" src="/images/space.gif" width="35" height="1" border="0" alt="">(800) 822-2673<br>
+	  
+	  			<img name="space" src="/images/space.gif" width="10" height="1" border="0" alt=""><span style="color:red"><%= @translator.get_msg(session[:language], "Phone")  %>:</span><br>
+	  			<img name="space" src="/images/space.gif" width="35" height="1" border="0" alt="">(815) 929-1662<br>
+
+	  			<img name="space" src="/images/space.gif" width="10" height="1" border="0" alt=""><span style="color:red"><%= @translator.get_msg(session[:language], "Powertrain")  %>:</span><br>
+	  			<img name="space" src="/images/space.gif" width="35" height="1" border="0" alt="">(888) 527-6996<br>
+	  
+	  			<img name="space" src="/images/space.gif" width="10" height="1" border="0" alt=""><span style="color:red"><%= @translator.get_msg(session[:language], "Fax")  %>:</span><br>
+	  			<img name="space" src="/images/space.gif" width="35" height="1" border="0" alt="">(815) 929-1668
+			</td>
+		</tr>
+	</table>
+	</td>
+
+
+  	<td width="20%" align="center">
+  	<table width="97%" cellpadding="4" cellspacing="0" border="0">
+		<tr>
+			<td class="cellred">Email:</td>
+		</tr>
+		<tr>
+  			<td height="175" class="cell" valign="top">
+			  <div style="text-align:center"><img src="/images/mail.gif" width="40" height="41"></div><br><br>
+			  <center><a href="mailto:info@kbcores.com">kbcores@aol.com</a></center>
+			</td>
+		</tr>
+	</table>
+	</td>
+  </tr>
+</table>
+
+
+<%= form_tag :controller => "contact_us", :action => "sendContact" %>
+
+<TABLE class=tabletext>
+<TR>
+  <TD>
+    <span id="error_msg"> </span>
+  </TD>
+</TR>
+<TR>
+<TD colspan=2>
+<b><%= @translator.get_msg(session[:language], "ContactFormTitle")  %>:</b>
+</TD>
+</TR>
+<TR>
+<TD align=right width=100>**<%= @translator.get_msg(session[:language], "FirstName")  %>: </TD>
+<TD><%= text_field 'contact', 'first_name', {:style => "background-color: #FFFFFF;" } %> </TD>
+</TR>
+<TR>
+<TD align=right width=100>**<%= @translator.get_msg(session[:language], "LastName")  %>: </TD>
+<TD><%= text_field 'contact', 'last_name' %> </TD>
+</TR>
+<TR>
+<TD align=right width=100><%= @translator.get_msg(session[:language], "Title")  %>: </TD>
+<TD><%= text_field 'contact', 'title' %> </TD>
+</TR>
+<TR>
+<TD align=right width=100><%= @translator.get_msg(session[:language], "Company")  %>: </TD>
+<TD><%= text_field 'contact', 'company' %> </TD>
+</TR>
+<TR>
+<TD align=right width=100><%= @translator.get_msg(session[:language], "Address")  %> 1: </TD>
+<TD><%= text_field 'contact', 'address1' %> </TD>
+</TR>
+<TR>
+<TD align=right width=100><%= @translator.get_msg(session[:language], "Address")  %> 2: </TD>
+<TD><%= text_field 'contact', 'address2' %> </TD>
+</TR>
+<TR>
+<TD align=right width=100><%= @translator.get_msg(session[:language], "City")  %>: </TD>
+<TD><%= text_field 'contact', 'city' %> </TD>
+</TR>
+<TR>
+<TD align=right width=100><%= @translator.get_msg(session[:language], "State")  %>: </TD>
+<TD><%= text_field 'contact', 'state', 'size' => 4 %> </TD>
+</TR>
+<TR>
+<TD align=right width=100><%= @translator.get_msg(session[:language], "ZipCode")  %>: </TD>
+<TD><%= text_field 'contact', 'zip_code', 'size' => 10 %> </TD>
+</TR>
+<TR>
+<TD align=right width=100><%= @translator.get_msg(session[:language], "Phone")  %>: </TD>
+<TD><%= text_field 'contact', 'phone' %> </TD>
+</TR>
+<TR>
+<TD align=right width=100>**<%= @translator.get_msg(session[:language], "Email")  %>: </TD>
+<TD><%= text_field 'contact', 'email' %> </TD>
+</TR>
+<TR>
+<TD align=right width=100 valign=top><%= @translator.get_msg(session[:language], "Comments")  %>: </TD>
+<TD><%= text_area 'contact', 'comments', 'cols' => 40, 'rows' => 5 %> </TD>
+</TR>
+<TR>
+<TD colspan=2 height=20></TD>
+</TR>
+<TR>
+<TD>
+</TD>
+<TD >
+  <input type=submit onClick="return validateContact();" value="Submit" style="width:60">&nbsp;&nbsp;&nbsp;&nbsp; <input type=reset value="Reset" style="width:60" >
+</TD>
+</TR>
+</TABLE>
+</form>
+</center>
+

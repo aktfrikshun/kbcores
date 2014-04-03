@@ -1,0 +1,1 @@
+<%= render_component(:controller => "Part", :action  => "show_lookup_results") %>

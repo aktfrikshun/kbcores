@@ -1,0 +1,64 @@
+<b>Select a user from the below list, or use search keywords to narrow your choices</b>
+<BR>
+<%= form_remote_tag( :update => "page_view",
+					:url => {:action => "search" } ) %>
+<TABLE width=100% class=bodytext style="font-size: 95%">
+<TR>
+<TD align=right>
+<b>User Id: </b>
+</TD>
+<TD >
+ <%= text_field_tag :user_id, @user_id %>
+ <%= observe_field(:user_id,
+ 					:frequency => 0.5,
+ 					:update => :page_view,
+ 					:url => { :action => :search_user_id }) %>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR> 		
+<TD align=right>			
+ <b>Last Name: </b>
+</TD>
+<TD>
+ <%= text_field_tag :last_name, @last_name %>
+ <%= observe_field(:last_name,
+ 					:frequency => 0.5,
+ 					:update => :page_view,
+ 					:url => { :action => :search_last_name }) %>
+</TD> 	
+<TD>				
+ 	<INPUT type=SUBMIT value="Search All Keywords">		
+</TD>	
+</TR>
+</TABLE>
+</form>
+<BR>
+<HR width=100% >
+<div id=page_view>
+<% if @this_page.tot_items == 0 %>
+   No users found!
+<% else %>
+  <table width=100%>
+   <tr>
+    <td>
+     <span class=tabletext>Found <%= @this_page.tot_items %> users matching search keywords...</span> 
+    </td>
+    <td align=right> 
+     <%= link_to_remote "< Previous", :update => "results",:url => {:action => "prev_page" } %> | <%= link_to_remote "Next >", :update => "results",:url => {:action => "next_page" } %>
+    </td>
+   </tr>
+  </table>
+   <div id=results>
+      <%= render_component(:controller => "User", :action  => "show_results") %>
+   </div>
+   <%= hidden_field("this_page","page_num") %>
+   <%= hidden_field("this_page","tot_items") %>
+   <%= hidden_field("this_page","page_size") %>
+   <%= hidden_field("this_page","start") %>  
+   <%= hidden_field("this_page","num_pages") %>  
+   
+</div>    
+<% end %>
+

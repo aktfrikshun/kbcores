@@ -1,0 +1,21 @@
+<% if @this_page.tot_items == 0 %>
+   Parts matching search criteria not found!
+<% else %>
+  <SCRIPT language="JavaScript">
+    document.location.href="#results";
+  </SCRIPT>
+  <table width=100%>
+   <tr>
+    <td>
+       <span class=tabletext><%= @translator.get_msg1(session[:language], "FOUND :arg1 PARTS MATCHING SEARCH CRITERIA", @this_page.tot_items.to_s) %></span>
+    </td>
+    <td align=right> 
+     <%= link_to_remote "< " + @translator.get_msg(session[:language], "PREVIOUS"), :update => "results",:url => {:action => "prev_lookup_page" } %> | <%= link_to_remote @translator.get_msg(session[:language], "NEXT") + " >", :update => "results",:url => {:action => "next_lookup_page" } %>
+    </td>
+   </tr>
+  </table>
+   <div id=results>
+      <%= render_component(:controller => "Product", :action  => "show_lookup_results") %>
+   </div>
+<% end %>
+

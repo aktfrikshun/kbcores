@@ -1,0 +1,16 @@
+  		<b>Part Family</b><BR>
+        <select onChange="selectionFamilyChanged();"  name="families[]" id="families[]"    style="width:300">
+          <option value="ALL">ALL</option>        
+          <% @familylist.each do |ct| %>
+            <option value="<%= ct.code_value %>" ><%= ct.code_value %></option>          
+          <% end %>
+        </select>	
+      <INPUT TYPE=HIDDEN name="FamilySelection" id="FamilySelection">
+      <%= observe_field("FamilySelection",
+ 					      :frequency => 0.25,
+ 					      :update => :partnamesdiv,
+ 					      :url => { :action => :refresh_partnames },
+ 					      :with => "'part_type='+ escape($('PartTypeSelection').value) + '&mfr='+ escape($('MfrSelection').value) + '&family=' + escape($('FamilySelection').value)")
+ 					      %>			
+
+        

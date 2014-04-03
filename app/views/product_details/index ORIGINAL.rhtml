@@ -1,0 +1,136 @@
+
+<% if @part %>
+<TABLE >
+<tr>
+<TD valign=top align=right >
+   <A HREF="/Product_Details/addtocart/<%= @part.id %>"> Add to Cart </A>
+</TD>
+</tr>
+<tr>
+<TD>
+<TABLE  cellpadding=2 cellspacing=2 class=tabletext bgcolor="#000000" style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%" >
+  <TR>
+     <TD>
+         <b>Part Number:</b>
+     </TD>
+     <TD>
+     	<%= @part.part_number%>
+     </TD>
+  </TR>
+  <TR>
+     <TD>
+         <b>Description:</b>
+     </TD>
+     <TD>
+        <% @desc = Description.find(:first,:conditions => " product_id = " + @part.id.to_s + " and language_code = 'EN'") %>
+     	<% if @desc %>
+     	<%= @desc.description %>
+     	<% end %>
+     </TD>
+  </TR> 
+  <TR>
+     <TD>
+         
+     </TD>
+     <TD>
+      	<%= @part.notes %>
+     </TD>
+  </TR>     
+  <TR>
+     <TD>
+         <b>Type:</b>
+     </TD>
+     <TD>
+     	<%= @part.product_type %>
+     </TD>
+  </TR> 
+  <TR>
+     <TD>
+         <b>Quantity:</b>
+     </TD>
+     <TD>
+     	<%= @part.level_1_qty %>
+     </TD>
+  </TR>     
+
+<%		
+ @customer_id = session[:customer]
+ @customer = nil
+ if (@customer_id) 
+         @customer = Account.find(@customer_id) 
+ end 
+%>
+<%		
+		
+	    if (@customer == nil)
+	       session[:next_page] = "Product_Details"
+	       session[:next_action] = "index"
+	       session[:next_id] = @part.id
+	    
+%>
+  <TR>
+     <TD>
+         <b>Retail Price:</b>
+     </TD>
+     <TD>
+     	<%= number_to_currency((@part.level_1_price * 1.25 )) %>
+     </TD>
+  </TR> 
+<TR><TD colspan=2>    
+<span class=tabletext style="font-size: 105%"> Customers <%= link_to "login", :controller => "Login", :action => "index_cust" %><BR>
+Forgot Password? Need to signup for an account? Call us! (800) 822-2673</span>
+</TD></TR>
+<% else %>
+<TR>
+     <TD>
+         <b>Your Discounted Price:</b>
+     </TD>
+     <TD>
+     	<%= number_to_currency((@part.level_1_price  ) - (( @part.level_1_price  ) * @customer.discount)) %>
+     </TD>
+</TR> 
+<% end %>
+ 
+</TABLE > 
+<TABLE class=tabletext width=100%>
+  <TR>
+     <TD colspan=2>
+        <%= link_to "<< Back to results",{ :controller => "Product", :action => "refresh" } %>
+     </TD>
+  </TR>
+</TABLE> 
+</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<TABLE cellpadding=2 cellspacing=2 bgcolor="#FFFFFF" style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;font-size: 105%">
+<TR>
+<% if (@prod_pictures) %>
+<%   @prod_pictures.each do |pp| %>
+<%   @picture = Picture.find(pp.picture_id) %>
+<TD valign=top >
+ <% if @picture %>
+ <b><span><%= @picture.comment %></span></b><BR><br>
+ <A HREF="/Product_Details/zoom_image/<%= @part.id %>?picture=<%= @picture.id %>">
+ <img border=0  alt="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= pp.picture_id %>" />
+ </A>
+ <% end %>
+</TD>
+<%   end %>
+<% else %>
+<b>No pictures for this part</b>
+<% end %>    
+    
+  </TR>
+
+</TABLE>
+
+
+<BR>
+
+<BR>
+
+<% else %>
+   Part <%= @part_id %> not found
+<% end %>

@@ -1,0 +1,11 @@
+  		<b><%= @translator.get_msg(session[:language], "PART NAME") %></b><BR>
+        <select  name="part_names[]" id="part_names[]"    style="width:300">
+          <option value="ALL">ALL</option>        
+          <% @part_names.each do |ct| %>
+            <% if ct.code_value == session[:ls_part_names] %>
+              <option selected value="<%= ct.code_value %>" ><%= @translator.get_msg(session[:language], ct.code_value) %></option>          
+            <% else %>
+              <option value="<%= ct.code_value %>" ><%= @translator.get_msg(session[:language], ct.code_value) %></option>                      
+            <% end %>
+          <% end %>
+        </select>	

@@ -1,0 +1,214 @@
+<a href="/Admin_Home"><< back to Admin Home</a>
+<br/>
+<br/>
+<SCRIPT language="javascript">
+  		function getSelectedValues (select) {
+  				var r = new Array();
+  				for (var i = 0; i < select.options.length; i++)
+    			if (select.options[i].selected)
+      			r[r.length] = select.options[i].value;
+  				return r;
+			}
+  		
+  		function selectionMfrChanged() {
+  				var elem = document.getElementById("MfrSelection");
+   				var mfrs = document.getElementById("mfrs[]");
+  				var sels = getSelectedValues(mfrs);
+  				
+  				var commaStr = "";
+  				var resultStr = "";
+  				for (var i = 0; i < sels.length; i++) {
+  				  resultStr += commaStr + "'" + sels[i] + "'";
+  				  commaStr = ", ";
+  				}
+  				
+  				elem.value = resultStr;
+  			}  			
+  		function selectionFamilyChanged() {
+  				var elem = document.getElementById("FamilySelection");
+   				var families = document.getElementById("families[]");
+  				var sels = getSelectedValues(families);
+  				
+  				var commaStr = "";
+  				var resultStr = "";
+  				for (var i = 0; i < sels.length; i++) {
+  				  resultStr += commaStr + "'" + sels[i] + "'";
+  				  commaStr = ", ";
+  				}
+  				
+  				elem.value = resultStr;
+  			}  			 
+  		function selectionPartTypeChanged() {
+  				var elem = document.getElementById("PartTypeSelection");
+   				var parttypes = document.getElementById("part_types[]");
+  				var sels = getSelectedValues(parttypes);
+  				
+  				var commaStr = "";
+  				var resultStr = "";
+  				for (var i = 0; i < sels.length; i++) {
+  				  resultStr += commaStr + "'" + sels[i] + "'";
+  				  commaStr = ", ";
+  				}
+  				
+  				elem.value = resultStr;
+  			}  			  			 			
+</SCRIPT>
+
+<b>Select a part from the below list, or use search criteria to narrow your choices</b>
+<BR>
+<%= form_remote_tag( :update => "page_view",
+					:url => {:action => "search" } ) %>
+<TABLE class=tabletext style="font-size: 10pt;" width=600>
+  <TR>
+  <TD valign=top>
+        <TABLE cellpadding=0 cellspacing=0><TR height="3px"><TD></TD></TR></TABLE>
+    	<DIV id="parttypesdiv" name="parttypesdiv">
+    	<b>Part Type</b><BR>
+        <select   onChange="selectionPartTypeChanged();" name="part_types[]" id="part_types[]"    style="width:300">
+              		  <option value="ALL">ALL</option>
+        <% @part_types.each do |co| %>
+   		     <option value="<%= co.code_id %>" ><%= co.code_value %></option>          
+        <% end %>
+      </select>	
+      <INPUT TYPE=HIDDEN name="PartTypeSelection" id="PartTypeSelection">
+      <%= observe_field("PartTypeSelection",
+ 					      :frequency => 0.25,
+ 					      :update => :mfrsdiv,
+ 					      :url => { :action => :refresh_mfrs },
+ 					      :with => "'part_type='+ escape($('PartTypeSelection').value)")
+ 					      %>			
+      
+      <%= observe_field("PartTypeSelection",
+ 					:frequency => 0.25,
+ 					:update => :famsdiv,
+ 					      :url => { :action => :refresh_fams },
+ 					      :with => "'part_type='+ escape($('PartTypeSelection').value)")
+      %>
+      <%= observe_field("PartTypeSelection",
+ 					      :frequency => 0.25,
+ 					      :update => :partnamesdiv,
+ 					      :url => { :action => :refresh_partnames },
+ 					      :with => "'part_type='+ escape($('PartTypeSelection').value)")
+ 					      %>			
+	      </DIV> 					  
+        
+ 					      
+ 					
+
+ 		<TABLE cellpadding=0 cellspacing=0><TR height="5px"><TD></TD></TR></TABLE>
+ 		<DIV id="mfrsdiv" >
+ 	  		<b>Manufacturer</b><BR>
+        <select   onChange="selectionMfrChanged();" name="mfrs[]" id="mfrs[]"    style="width:300">
+              		  <option value="ALL">ALL</option>
+        <% @mfrlist.each do |co| %>
+   		     <option value="<%= co.code_value %>" ><%= (CommonCode.new).get_mfr_label(co.code_value).upcase %></option>          
+        <% end %>
+      </select>	
+      
+      <INPUT TYPE=HIDDEN name="MfrSelection" id="MfrSelection">
+      <%= observe_field("MfrSelection",
+ 					:frequency => 0.25,
+ 					:update => :famsdiv,
+ 					      :url => { :action => :refresh_fams },
+ 					      :with => "'part_type='+ escape($('PartTypeSelection').value) + '&mfr='+ escape($('MfrSelection').value)")
+      %>
+      <%= observe_field("MfrSelection",
+ 					      :frequency => 0.25,
+ 					      :update => :partnamesdiv,
+ 					      :url => { :action => :refresh_partnames },
+ 					      :with => "'part_type='+ escape($('PartTypeSelection').value) + '&mfr='+ escape($('MfrSelection').value)")
+ 					      %>			
+ 					 
+        </DIV>
+ 		<TABLE cellpadding=0 cellspacing=0><TR height="5px"><TD></TD></TR></TABLE>	      
+	        	<DIV id="famsdiv" name="famsdiv">
+  		<b>Part Family</b><BR>
+        <select onChange="selectionFamilyChanged();"  name="families[]" id="families[]"    style="width:300">
+          <option value="ALL">ALL</option>        
+          <% @familylist.each do |ct| %>
+            <option value="<%= ct.code_value %>" ><%= ct.code_value %></option>          
+          <% end %>
+        </select>	
+      <INPUT TYPE=HIDDEN name="FamilySelection" id="FamilySelection">
+      <%= observe_field("FamilySelection",
+ 					      :frequency => 0.25,
+ 					      :update => :partnamesdiv,
+ 					      :url => { :action => :refresh_partnames },
+ 					      :with => "'part_type='+ escape($('PartTypeSelection').value) + '&mfr='+ escape($('MfrSelection').value) + '&family=' + escape($('FamilySelection').value)")
+ 					      %>			
+	      </DIV> 	  				  
+      
+  </TD>
+ 
+
+  <TD valign="top">				
+<TABLE width=100% class=bodytext style="font-size: 10pt">
+  <TR><TD>
+      <DIV id="partnamesdiv" name="partnamesdiv">
+  		<b>Part Name</b><BR>
+        <select  name="part_names[]" id="part_names[]"    style="width:300">
+          <option value="ALL">ALL</option>        
+          <% @part_names.each do |ct| %>
+            <option value="<%= ct.code_value %>" ><%= ct.code_value %></option>          
+          <% end %>
+        </select>	
+      </DIV>
+      
+  
+  </TD></TR>
+<TR>
+<TD>
+<b>Part Number </b>
+<BR>
+ <%= text_field_tag :part_number %>
+
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD >
+<b>Description </b>
+<BR>
+ <%= text_field_tag :description %>
+
+</TD>
+<TD>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR><TD align="left" colspan=2>			
+ 	<INPUT type=SUBMIT value="Search All Keywords">		
+</TD></TR>
+</TABLE>
+</form>
+
+<hr width=100%>
+<div id=page_view>
+<% if @this_page.tot_items == 0 %>
+   No parts found!
+<% else %>
+  <table width=100%>
+   <tr>
+    <td>
+     <span class=tabletext>Found <%= @this_page.tot_items %> parts</span>
+    </td>
+    <td align=right> 
+     <%= link_to_remote "< Previous", :update => "results",:url => {:action => "prev_page" } %> | <%= link_to_remote "Next >", :update => "results",:url => {:action => "next_page" } %>
+    </td>
+   </tr>
+  </table>
+   <div id=results>
+      <%= render_component(:controller => "Admin_Product", :action  => "show_results") %>
+   </div>
+   <%= hidden_field("this_page","page_num") %>
+   <%= hidden_field("this_page","tot_items") %>
+   <%= hidden_field("this_page","page_size") %>
+   <%= hidden_field("this_page","start") %>  
+   <%= hidden_field("this_page","num_pages") %>  
+   
+</div>    
+<% end %>
+

@@ -1,0 +1,246 @@
+<TABLE cellspacing=0 cellpadding=0 bgcolor="white" width="1024" >
+    <TR>
+        <TD colspan=2>
+            <%= link_to "<< Back to results",{ :controller => "Admin_Product", :action => "refresh" } %>
+        </TD>
+    </TR>
+</TABLE>
+<% if @part %>
+<%	session[:next_page] = "Part_Details"
+session[:next_action] = "index"
+session[:next_id] = @part.id %>
+<form action="/Admin_Product_Edit/save/<%= @part.id %>" method="POST">
+<table cellspacing=0 cellpadding=0 bgcolor="white" width="1024">
+    <tr>
+        <td nowrap style="border-TOP: 1px solid #000000">
+            <table cellpadding="0" cellspacing="6" width="100%">
+                <tr>
+                    <td  width="150"  >
+                        <em>KB Part #&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td valign="middle"  width="350" >
+                        <input type="text" name="part_no" value="<%= @part.part_no %>">&nbsp;&nbsp;
+                    </td>
+                    <td    width="150"  >
+                        <em>Stroke&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="stroke" value="<%= @part.stroke %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td    width="150" >
+                        <em>Part Type&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="part_type" value="<%= @part.part_type %>" >
+                    </td>
+                    <td   width="150"   >
+                        <em>Rod&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="rod" value="<%= @part.rod %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"  >
+                        <em>Part Category&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="category" value="<%= @part.part_category %>" >
+                    </td>
+                    <td   width="150"   >
+                        <em>Main&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="main" value="<%= @part.main %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Manufacturer&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="manufacturer" value="<%= @part.manufacturer %>" >
+                    </td>
+                    <td   width="150"   >
+                        <em>Connect Rod Length&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="connect_rod_len" value="<%= @part.connect_rod_len %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Description&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td  width="350"  >
+                        <input type="text" name="description" value="<%= @part.description %>" >
+                    </td>
+                    <td   width="150"   >
+                        <em>Camshaft&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="camshaft" value="<%= @part.camshaft %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Cylinders&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="cylinders" value="<%= @part.cylinders %>" >
+                    </td>
+                    <td  width="150"   >
+                        <em>Valves&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="valves" value="<%= @part.valves %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Liters&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="liters" value="<%= @part.liters %>" >
+                    </td>
+                   <td   width="150"   >
+                        <em>Front Seal Diam&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="front_seal_dia" value="<%= @part.front_seal_dia %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>CC's&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="ccs" value="<%= @part.ccs %>" >
+                    </td>
+                   <td   width="150"   >
+                        <em>Rear Seal Diam&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="rear_seal_dia" value="<%= @part.rear_seal_dia %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"  >
+                        <em>Casting #&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="casting_no" value="<%= @part.casting_no %>" >
+                    </td>
+                    <td   width="150"   >
+                        <em>Bore&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="bore" value="<%= @part.bore %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Trans Speed&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="trans_speed" value="<%= @part.trans_speed %>" >
+                    </td>
+                    <td   width="150"   >
+                        <em>App Year&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                    	
+                    	<input type="text" name="application_start_yr" value="<%= @part.application_start_yr %>" > - 
+						<input type="text" name="application_end_yr" value="<%= @part.application_end_yr %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Trans Type&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="trans_type" value="<%= @part.trans_type %>" >
+                    </td>
+                    <td  width="150"   >
+                        <em>Metal&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="metal" value="<%= @part.metal %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"   >
+                        <em>Notes&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="notes" value="<%= @part.notes %>" >
+                    </td>
+                    <td  width="150"   >
+                        <em>KB Product Code&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="kb_product_code" value="<%= @part.kb_product_code %>" >
+                    </td>
+                </tr>
+                <tr>
+                    <td   width="150"  >
+                        <em>Price&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                    	<input type="text" name="price" value="<%= @part.price %>" >
+                    </td>
+                    <td  width="150"  >
+                        <em>On Hand&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td width="350" >
+                        <input type="text" name="on_hand" value="<%= @part.on_hand %>" >
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<input type="SUBMIT" value="Save" >
+</form>
+
+<table cellspacing=0 cellpadding=0 bgcolor="white" width="1024">
+    <tr>
+        <td style="border-TOP: 1px solid #000000">
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-1.jpg'") %>
+            <% if @picture %>
+            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+		
+        <td style="border-TOP: 1px solid #000000">
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-2.jpg'") %>
+            <% if @picture %>
+            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+        <td style="border-TOP: 1px solid #000000">
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-3.jpg'") %>
+            <% if @picture %>
+            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+				</tr><tr>
+        <td >
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-4.jpg'") %>
+            <% if @picture %>
+            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+        <td >
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-5.jpg'") %>
+            <% if @picture %>
+            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+		<td ></td>
+   </tr>
+</table>
+</TABLE><% else %>
+Part <%= @part_id %>not found<% end %>

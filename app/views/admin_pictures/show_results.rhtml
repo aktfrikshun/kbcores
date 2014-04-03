@@ -1,0 +1,32 @@
+
+
+<table border="0" class=tabletext width=100% >
+<tr>
+<td>Page <%= @this_page.page_num %> of <%= @this_page.get_num_pages %></td><td></td>
+</tr>
+</table>
+<table border="0" class=tabletext width=100% > 
+<tr> 
+<td width="10"> </td>
+<td ><p align="center"></td> 
+<td ><p align="center"><i><b>Name</b></i></td> 
+<td ><p align="center"><i><b>Title</b></i></td>
+<td ><p align="center"></td>
+</tr>
+ <% @pictCount = @this_page.start - 1 %>
+ <% @picts.each do |pict| %>  
+  <% @pictCount = @pictCount + 1 %>
+<tr>
+<td><%= @pictCount %>.  </td>
+<td><img border=0 height=50 src="/Admin_Pictures/picture/<%= pict.id %>" /></td>
+<td>
+<%= link_to pict.name, { :controller => "Admin_Pictures", :action => "edit", :id => pict } %>
+</td> 
+<td><%= pict.comment %></td> 
+<td>
+	<a href="/Admin_Pictures/download_picture/<%= pict.id %>" target="_blank">download</a>&nbsp;&nbsp;
+<%= link_to "remove", { :controller => "Admin_Pictures", :action => "delete", :id => pict } %>
+</td>
+</tr> 
+<% end %> 
+</table>

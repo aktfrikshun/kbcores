@@ -1,0 +1,124 @@
+
+<% if @part %>
+<%= form_tag :controller => "Admin_Product_Edit", :action => "saveApplications" %>
+<%= hidden_field_tag "id", @part.id %>
+<span class=tabletext style="font-size: 105%;">
+<b><%= @part.part_number %></b> - <%= @part.description.description %>
+</span>
+
+<TABLE class=tabletext style="font-size: 105%;" >
+  <TR><TD>
+  		<b>Year</b><BR>
+        <select name="years[]" id="years[]" size="8" multiple style="width:75">
+        <% @years.each do |yr| %>
+   		     <option value=<%=yr.YEARID %> ><%= yr.YEARID %></option>          
+        <% end %>
+      </select>	
+  </TD>
+  <TD>
+  		<SCRIPT language="javascript">
+  		function getSelectedValues (select) {
+  				var r = new Array();
+  				for (var i = 0; i < select.options.length; i++)
+    			if (select.options[i].selected)
+      			r[r.length] = select.options[i].text;
+  				return r;
+			}
+  		
+  			function selectionChanged() {
+  				var elem = document.getElementById("MakeSelection");
+  				var makes = document.getElementById("makes[]");
+  				var sels = getSelectedValues(makes);
+  				
+  				var commaStr = "";
+  				var resultStr = "";
+  				for (var i = 0; i < sels.length; i++) {
+  				  resultStr += commaStr + "'" + sels[i] + "'";
+  				  commaStr = ", ";
+  				}
+  				elem.value = resultStr;
+  			}
+  		</SCRIPT>
+  		<b>Make</b><BR>
+        <select onChange="selectionChanged();" name="makes[]" id="makes[]"   size="8" multiple style="width:200">
+        <% @makes.each do |mk| %>
+   		     <option value=<%=mk.MAKENAME %> ><%= mk.MAKENAME %></option>          
+        <% end %>
+      </select>	
+      <INPUT TYPE=HIDDEN name="MakeSelection" id="MakeSelection">
+      <%= observe_field("MakeSelection",
+ 					:frequency => 0.5,
+ 					:update => :modelsdiv,
+ 					:url => { :action => :refresh_models }) %>
+ 	  </TD>
+ 	  <TD>
+   			 <DIV id="modelsdiv" name="modelsdiv">
+       		<b>Model</b><BR>
+       		<select name="models[]" id="models[]"   size="8" multiple  style="width:200">
+       		<% @models.each do |md| %>
+   		     		<option value=<%= md.MODELNAME %> ><%= md.MODELNAME %></option>          
+        	<% end %>
+          </select>	
+    </DIV>
+
+  </TD>
+ 
+</TR>
+
+  <TR><TD colspan=3 height=20></TD></TR>
+  <TR>
+  <TD colspan=3 align="right">
+    <INPUT type="Submit" value="Add Applications">
+  </TD>
+  </TR>
+   
+</TABLE > 
+</form>
+
+<div id=page_view>
+<% if @this_page.tot_items == 0 %>
+<BR>
+	<span class=tabletext style="font-size: 12pt ;">No Product Applications...</span>
+<BR>
+<% else %>
+  <table class=tabletext style="font-size: 12pt;" width=100%>
+   <tr>
+    <td>
+     <span class=tabletext>Found <%= @this_page.tot_items %> applications.  <%= link_to "remove all applications", {:action => "deleteAllProductApplication", :id => @part.id.to_s  },:confirm => "Are you sure you want to remove all applications for this part?" %></span>
+    </td>
+    <td align=right> 
+     <%= link_to_remote "< Previous", :update => "results",:url => {:action => "prev_page" } %> | <%= link_to_remote "Next >", :update => "results",:url => {:action => "next_page" } %>
+    </td>
+   </tr>
+  </table>
+   <div id=results>
+      <%= render_component(:controller => "Admin_Product_Edit", :action  => "show_results") %>
+   </div>
+   <%= hidden_field("this_page","page_num") %>
+   <%= hidden_field("this_page","tot_items") %>
+   <%= hidden_field("this_page","page_size") %>
+   <%= hidden_field("this_page","start") %>  
+   <%= hidden_field("this_page","num_pages") %>  
+<% end %>   
+</div>    
+
+
+<BR>
+<BR>
+<TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Product_Edit/uploadPicture/<%= @part.id%>">
+      << Choose Part Picture 
+    </A>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+	<A HREF="/Admin_Product/list">
+      Product Administration >>
+    </A>
+  </TD>
+  </TR>
+</TABLE>
+
+<% else %>
+   Part not found
+<% end %>

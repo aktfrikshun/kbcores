@@ -1,0 +1,150 @@
+<SCRIPT language="javascript">
+  		function getSelectedValues (select) {
+  				var r = new Array();
+  				for (var i = 0; i < select.options.length; i++)
+    			if (select.options[i].selected)
+      			r[r.length] = select.options[i].text;
+  				return r;
+			}
+  		
+  		function selectionMakeChanged() {
+  				var elem = document.getElementById("MakeSelection");
+  				var makes = document.getElementById("makes[]");
+  				var sels = getSelectedValues(makes);
+  				
+  				var commaStr = "";
+  				var resultStr = "";
+  				for (var i = 0; i < sels.length; i++) {
+  				  resultStr += commaStr + "'" + sels[i] + "'";
+  				  commaStr = ", ";
+  				}
+  				elem.value = resultStr;
+  			}
+  		function selectionYearChanged() {
+  				var elem = document.getElementById("YearSelection");
+  				var years = document.getElementById("years[]");
+  				var sels = getSelectedValues(years);
+  				
+  				var commaStr = "";
+  				var resultStr = "";
+  				for (var i = 0; i < sels.length; i++) {
+  				  resultStr += commaStr + "'" + sels[i] + "'";
+  				  commaStr = ", ";
+  				}
+  				elem.value = resultStr;
+  			}  			
+</SCRIPT>
+
+<b>Select a part from the below list</b>
+<BR>
+<!--
+<%= form_remote_tag( :update => "page_view",
+					:url => {:action => "search" } ) %>
+<TABLE class=tabletext style="font-size: 10pt;" width=100%>
+  <TR><TD>
+  		<b>Year</b><BR>
+        <select  onChange="selectionYearChanged();" name="years[]" id="years[]"  style="width:75">
+              		  <option value="ALL">ALL</option>
+        <% @years.each do |yr| %>
+   		     <option value=<%=yr.YEARID %> ><%= yr.YEARID %></option>          
+        <% end %>
+      </select>	
+      <INPUT TYPE=HIDDEN name="YearSelection" id="YearSelection">
+      <%= observe_field("YearSelection",
+ 					:frequency => 0.25,
+ 					:update => :makesdiv,
+ 					:url => { :action => :refresh_makes },
+ 					:with => "'year='+ escape($('YearSelection').value) + '&make=' + escape($('MakeSelection').value)")
+ 					 %>      
+ 
+    	<DIV id="makesdiv" name="makesdiv">
+  		<b>Make</b><BR>
+        <select onChange="selectionMakeChanged();" name="makes[]" id="makes[]"    style="width:200">
+              		  <option value="ALL">ALL</option>
+        <% @makes.each do |mk| %>
+   		     <option value=<%=mk.MAKENAME %> ><%= mk.MAKENAME %></option>          
+        <% end %>
+      </select>	
+      <INPUT TYPE=HIDDEN name="MakeSelection" id="MakeSelection">
+      <%= observe_field("MakeSelection",
+ 					:frequency => 0.25,
+ 					:update => :modelsdiv,
+ 					:url => { :action => :refresh_models },
+ 					:with => "'year='+ escape($('YearSelection').value) + '&make=' + escape($('MakeSelection').value)") 					
+ 					 %>
+
+
+   	<DIV id="modelsdiv" name="modelsdiv">
+       		<b>Model</b><BR>
+       		<select name="models[]" id="models[]"    style="width:200">
+       		  <option value="ALL">ALL</option>
+       		<% @models.each do |md| %>
+   		     		<option value=<%= md.MODELNAME %> ><%= md.MODELNAME %></option>          
+        	<% end %>
+          </select>	
+      </DIV>
+	</DIV>
+  </TD>
+ 
+
+  <TD valign="top">				
+<TABLE width=100% class=bodytext style="font-size: 10pt">
+
+<TD align=right>
+<b>Part Number: </b>
+</TD>
+<TD >
+ <%= text_field_tag :part_number %>
+
+</TD>
+<TD>
+</TD>
+</TR>
+<TR> 		
+<TD align=right>			
+ <b>Description: </b>
+</TD>
+<TD>
+ <%= text_field_tag :description %>
+
+</TD> 	
+	
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR><TD align="right" colspan=2>			
+ 	<INPUT type=SUBMIT value="Search All Keywords">		
+</TD></TR>
+</TABLE>
+</form>
+<BR>
+
+<HR width=100% >
+-->
+<div id=page_view>
+<% if @this_page.tot_items == 0 %>
+   No parts found!
+<% else %>
+  <table width=100%>
+   <tr>
+    <td>
+     <span class=tabletext>Found <%= @this_page.tot_items %> parts</span>
+    </td>
+    <td align=right> 
+     <%= link_to_remote "< Previous", :update => "results",:url => {:action => "prev_page" } %> | <%= link_to_remote "Next >", :update => "results",:url => {:action => "next_page" } %>
+    </td>
+   </tr>
+  </table>
+   <div id=results>
+      <%= render_component(:controller => "Product", :action  => "show_results") %>
+   </div>
+   <%= hidden_field("this_page","page_num") %>
+   <%= hidden_field("this_page","tot_items") %>
+   <%= hidden_field("this_page","page_size") %>
+   <%= hidden_field("this_page","start") %>  
+   <%= hidden_field("this_page","num_pages") %>  
+   
+</div>    
+<% end %>
+

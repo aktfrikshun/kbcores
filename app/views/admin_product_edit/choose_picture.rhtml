@@ -1,0 +1,6 @@
+<% if (@prod_picture) %>
+ <b><span><%= @picture.comment %></span></b><BR><BR>
+     <img border=0 height=250 width=250 src="/Admin_Product_Edit/picture/<%= @prod_picture.picture_id %>" />
+<% else %>
+<b>No picture selected for this part</b>
+<% end %>

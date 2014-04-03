@@ -1,0 +1,26 @@
+<a href="/Admin_Home"><< back to Admin Home</a>
+<br/>
+<br/>
+
+You may update the below mail settings or
+<%= link_to "click here", "/Admin_Home"%> to return to the main admin menu.
+<BR>
+<BR>
+<%= form_tag :controller => "admin_mail", :action => "save" %>
+<TABLE type=tabletext style="font-size: 110%">
+<TR>
+<TD>
+Email to recieve customer comments:
+</TD>
+<TD>
+<%= text_field_tag 'cust_comments', @contact_email.value %>
+</TD>
+</TR>
+
+<TR>
+<TD colspan=2>
+<INPUT TYPE=Submit Value="SAVE"></INPUT>
+</TD>
+</TR>
+</TABLE>
+</form>

@@ -1,0 +1,98 @@
+<SCRIPT Language="JavaScript" >
+function doLookup() {
+  location = "/Product/adv_lookup"
+  return true;
+}
+</SCRIPT>
+  <TABLE width=100% class="tabletext" style="font-size: 13pt">
+  <TR><TD valign="top" align=right>
+    <span class="tabletext" style="font-size: 13pt">
+  <font color=Red><blink>**<%= @translator.get_msg(session[:language], "New") %>**</blink></font> 
+  </span>
+  
+  </TD><TD valign=top>
+    <span class="tabletext" style="font-size: 13pt">
+    <%= @translator.get_msg(session[:language], "BrowseOurCatalog") %> <BR><BR><%= @translator.get_msg(session[:language], "TryOurNew") %> <INPUT TYPE="Button" 
+    style="color:#000000;
+   font-family:'arial',helvetica,sans-serif;
+   font-size:84%;
+   font-weight:bold;
+   background-color:#AAAAAA;
+   border:2px solid;
+   border-top-color:#DDDDDD;
+   border-left-color:#DDDDDD;
+   border-right-color:#999999;
+   border-bottom-color:#999999;" onclick="return doLookup();" value="<%= @translator.get_msg(session[:language], "PartsSearch") %>" />
+  </span>
+  </TD></TR></TABLE>
+<BR><BR>
+<center>
+<p><font size="+2" color="red"><b><%= @translator.get_msg(session[:language], "QualityCores") %></b></font></p>
+<br><br>
+<table width="80%">
+    <tr>
+        <td>
+          <table>
+          <tr>
+            <td><img src="images/CP001B.JPG" width="396"  border="3"  style="border-color:white"></td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td><img src="images/crankshafts_on_floor.JPG" width="400"  border="3"  style="border-color:white"></td>
+            <td> </td>
+          </tr>
+          <tr>
+            <td><img src="images/cores3.jpg" width="391"  border="3"  style="border-color:white"></td>
+            <td> </td>
+          </tr>
+          </table>
+        </td>
+        <td valign="top">
+          <span style="font-size: 14pt;color=Yellow"><center><%= @translator.get_msg(session[:language], "WeBuyCores") %>!</center></span>
+           <br><br><br>
+           <%= @translator.get_msg(session[:language], "EnginesDomesticImport") %>
+	        <UL>
+	          <LI><%= @translator.get_msg(session[:language], "BareBlock") %>
+	          <LI><%= @translator.get_msg(session[:language], "ShortBlock") %>
+	          <LI><%= @translator.get_msg(session[:language], "LongBlock") %>
+	          <LI><%= @translator.get_msg(session[:language], "FullAssembly") %>
+	        </ul>
+           <br>
+           <%= @translator.get_msg(session[:language], "TransmissionsDomesticImport") %>
+           <ul>
+            <LI><%= @translator.get_msg(session[:language], "Cases") %>	
+            <LI><%= @translator.get_msg(session[:language], "FullAssembly") %>
+           </Ul>
+           <%= @translator.get_msg(session[:language], "CylinderHeads") %><br><br>
+           <%= @translator.get_msg(session[:language], "Crankshafts") %><br><br>
+           <%= @translator.get_msg(session[:language], "Camshafts") %><br><br>
+           <%= @translator.get_msg(session[:language], "ConnectingRods") %><br><br>
+	       <%= @translator.get_msg(session[:language], "TorqueConverters") %><br><br>
+	       <%= @translator.get_msg(session[:language], "EngineParts") %><br><br>
+	       <%= @translator.get_msg(session[:language], "TransmissionParts") %>
+          
+        </td>
+    </tr>
+</table>
+<br><br><br>
+<table width="100%">  
+  <tr>
+    <td class="style10"><div align="right"><img src="images/ship.PNG" width="166" height="172"></div></td>
+    <td class="style10">&nbsp;</td>
+    <td valign="top" class="style10"><div align="left">
+        <p class="style14"><strong><FONT color="Red">KB Cores, Inc.</FONT></strong></p>
+        <p class="style14"><strong>1-800-822-2673 </strong></p>
+        <p><span class="style15">288 W. South Tec Dr.<br>
+          Kankakee, IL 60901<br>
+          Phone (815) 929-1662<br>
+          Fax (815)929-1668<br>
+          E-Mail - kbcores@aol.com</span><br>
+        </p>
+    </div></td>
+  </tr>
+  
+
+</table>
+
+  

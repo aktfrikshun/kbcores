@@ -1,0 +1,52 @@
+
+<%= form_tag( {:action => "savePictureTitle", :id => @picture }, :multipart => true) %>
+
+<TABLE class=tabletext style="font-size: 105%;" width=100%>
+<TR>
+<TD width=50% valign=top>
+<BR>
+       <b>Edit picture title... </b>
+<BR>
+<BR>
+<TABLE class=tabletext style="font-size: 105%;" >
+
+  <TR height=30>
+    <TD><b>Picture Title:</b></TD><TD><%= text_field_tag("comment", @picture.comment ) %></TD>
+  </TR>
+  <TR>
+     <TD colspan=2>
+        <INPUT type=SUBMIT value="Update Title " >
+     </TD>
+  </TR>
+  <TR><TD colspan=2 height=25></TD></TR>
+</TABLE > 
+</form>
+</TD>
+<TD align="Center" valign=Top >
+<% if (@picture) %>
+ <b><span><%= @picture.comment %></span></b><BR><BR>
+ <img border=0 width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+<% else %>
+<b>No picture found</b>
+<% end %>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Pictures/refresh">
+      << back to picture list 
+    </A>
+  </TD>
+  </TR>
+</TABLE>
+
+
+
+
+<BR>
+
+<BR>

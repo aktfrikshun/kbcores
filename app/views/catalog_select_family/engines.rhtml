@@ -1,0 +1,37 @@
+<center>
+<span class="bodytitle"><%= @make_code.name %> Home Page</span><BR><BR>
+<% if @family_groups.size > 0 %>
+<% @family_groups.each do | fg | %>
+  <TABLE cellpadding=2 cellspacing=2 class="tabletext" bgcolor="#FFFFFF" cellpadding=0 cellspacing=0 class="tabletext"  style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;">
+  <TR><TD colspan=4><span class="tabletext" style="font-size: 105%"><b><%= fg.group_name %></b></span></TD></TR>
+  <% @families = Family.find(:all, :conditions => " group_code = '" + fg.group_code + "'") %>
+  <% if @families.size > 0 %>
+
+<TR height=25><TD width=200><b>Part Family</b></TD><TD width=150><b>Kb Cores Code</b></TD><TD width=150><b>Year Range</b></TD><TD width=300><b>Notes</b></TD></TR>
+<% @families.each do | fm | %>
+  <TR><TD><%= link_to fm.name, {:controller => "Product", :action => "grouplist", :id => fm} %></TD>
+  <TD><%= fm.kbcores_code%></TD>
+  <TD><%= fm.year_range %></TD>
+  <TD><%= fm.notes %></TD>
+  </TR>
+<% end %>
+</TABLE><BR>
+<% else %>
+<BR><BR>
+<span class="tabletext">No part families found for this vehicle manufacturer...</span>
+  <% end %>
+<% end %>
+<% else %>
+<BR>
+<BR>
+<BR>
+<TABLE bgcolor="#FFFFFF" cellpadding=0 cellspacing=0 class="tabletext"  style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;">
+<TR><TD height=250 width=400 align=center valign=middle>
+<span><h2>Coming Soon!</h2><BR>Call us at (800) 822-2673 for availability and pricing...</span>
+</TD></TR></TABLE>
+<BR>
+<BR>
+<BR>
+<% end %>
+
+</center>

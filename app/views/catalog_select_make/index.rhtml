@@ -1,0 +1,27 @@
+<center>
+<TABLE bgcolor="#FFFFFF" cellpadding=0 cellspacing=0 class="tabletext"  style="border-top: 2px solid black;border-bottom: 2px solid black;border-left: 2px solid black;border-right: 2px solid black;">
+<TR height=25>
+<% @make_codes.each do | mc | %>
+<TD style="font-size: 105%;border-bottom: 1px solid black" width=150>
+  <b><%= link_to mc.name, {:controller => "CatalogSelectFamily", :id => mc } %></b>
+</TD>
+<% end %>
+
+</TR>
+<TR>
+<% @make_codes.each do | mc | %>
+ <TD valign=top >
+   <TABLE bgcolor="#FFFFFF" class="tabletext" >
+  <% @makes = Make.find(:all,:conditions => " parent_name = '" + mc.name + "'") %>
+  <% @makes.each do | mk | %>
+    <TR><TD><%= mk.name %>  </TD></TR>
+  <% end %>
+   </TABLE>
+ </TD>
+</TD>
+<% end %>
+
+</TR>
+</TABLE>
+
+</center>

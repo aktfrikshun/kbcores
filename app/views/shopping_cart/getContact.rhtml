@@ -1,0 +1,25 @@
+<script language="JavaScript" type="text/javascript" src="/javascripts/formval.js"></script>
+<SCRIPT Language="JavaScript">
+  function validateEmail() {
+    var elem;
+    elem = document.getElementById('email');
+    if (emptyString.test(elem.value)) {
+      alert('Email address is required!');
+      return false;
+    }
+    var email = /^[^@]+@[^@.]+\.[^@]*\w\w$/
+  	if (!email.test(elem.value)) {
+  	  alert('Not a valid email address!');
+      return false;
+  	}
+    //alert('Cart sent to: ' + elem.value );
+  	
+    
+    return true;
+  }
+</SCRIPT>
+<%= form_tag :controller => "Shopping_Cart", :action => "sendCart" %>
+  <b>Email order to: </b>
+  <%= text_field_tag :email, "kbcores1@earthlink.net" %> 
+  <input type=submit onClick="return validateEmail();" value="Submit" style="width:60">&nbsp;&nbsp;
+</form>

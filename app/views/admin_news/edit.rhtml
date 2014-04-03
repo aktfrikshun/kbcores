@@ -1,0 +1,33 @@
+You may add a new news article or 
+<%= link_to "click here", "/AdminNews"%> to return to the news admin menu.
+<BR>
+<%= form_tag :controller => "admin_news", :action => "saveEdit" %>
+<%= hidden_field_tag "id", @article.id %>
+<table border="0" class=tabletext style="font-size: 105%">
+ <tr>
+  <td valign=top><b>Article Title:</b></td>
+  <td>
+    <%= text_field_tag "title",@article.title, {:size => 50} %>
+  </td>
+ </tr>
+ <tr>
+   <td valign=top><b>Article Text:</b></td>
+   <td>
+       <%= text_area_tag "text",@article.text, {:rows => 10, :cols => 50 } %>
+   </td>
+ </tr>
+  <tr>
+  <td valign=top><b>Link to ticker:</b></td>
+  <td>
+    <%= select_tag "ticker",options_for_select(["N","Y"]) %>
+  </td>
+ </tr>
+ <tr>
+    <td>
+      <input type=SUBMIT value=Save>
+    </td>
+ </tr>
+</table>
+</form>
+<p><%= link_to "Back", :action => "index" %></p>
+

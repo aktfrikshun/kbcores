@@ -1,0 +1,17 @@
+<% if @this_page.tot_items == 0 %>
+   Users matching last name '<%= @last_name %>' not found!
+<% else %>
+  <table width=100%>
+   <tr>
+    <td>
+       <span class=tabletext>Found <%= @this_page.tot_items %> users matching last name '<%= @last_name %>'</span>
+    </td>
+    <td align=right> 
+     <%= link_to_remote "< Previous", :update => "results",:url => {:action => "prev_page" } %> | <%= link_to_remote "Next >", :update => "results",:url => {:action => "next_page" } %>
+    </td>
+   </tr>
+  </table>
+   <div id=results>
+      <%= render_component(:controller => "User", :action  => "show_results") %>
+   </div>
+<% end %>

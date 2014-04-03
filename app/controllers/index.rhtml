@@ -1,0 +1,159 @@
+<TABLE class=tabletext width="100%"><TR>
+     <TD colspan=2>
+        <%= link_to "<< Back to results",{ :controller => "Product", :action => "refresh" } %>
+     </TD>
+  </TR>
+</TABLE> 
+<% if @part %>
+<%		
+	       session[:next_page] = "Part_Details"
+	       session[:next_action] = "index"
+	       session[:next_id] = @part.id
+ %>
+ 
+<table cellspacing=0 cellpadding=4 >
+    <tr >
+        <td nowrap style="border-TOP: 1px solid #000000" >
+            <table>
+                <tr>
+                    <td>
+                        <em>KB Part #&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.part_no %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Part Type&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.part_type %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Part Category&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.part_category %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Manufacturer&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.manufacturer %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Cylinders&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.cylinders %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Liters&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.liters %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>CC's&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.ccs %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Casting #&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.casting_no %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Trans Speed&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.trans_speed %>
+                    </td>
+                </tr>
+								                <tr>
+                    <td>
+                        <em>Trans Type&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.trans_type %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <em>Notes&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                    </td>
+                    <td><%= @part.notes %>
+                    </td>
+                </tr>				
+            </table>
+        </td>
+    </tr>
+</table>
+</TABLE>
+<table cellspacing=0 cellpadding=4 >
+    <tr >
+        <td style="border-TOP: 1px solid #000000" >
+        	 <%   @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "1.jpg'") %>
+			 <% if @picture %>
+				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>">
+				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+				 </A>
+			 <% else %>
+			 	<img border=0 width=250 src="/images/No-Image-Available.gif" />
+		 	 <% end %>
+        </td>
+        <td  style="border-TOP: 1px solid #000000" >
+        	 <%   @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "2.jpg'") %>
+			 <% if @picture %>
+				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>">
+				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+				 </A>
+			 <% else %>
+			 	<img border=0 width=250 src="/images/No-Image-Available.gif" />
+		 	 <% end %>
+        </td>
+        <td  style="border-TOP: 1px solid #000000" >
+        	 <%   @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "3.jpg'") %>
+			 <% if @picture %>
+				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>">
+				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+				 </A>
+			 <% else %>
+			 	<img border=0 width=250 src="/images/No-Image-Available.gif" />
+		 	 <% end %>
+        </td>
+        <td  style="border-TOP: 1px solid #000000" >
+        	 <%   @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "4.jpg'") %>
+			 <% if @picture %>
+				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>">
+				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+				 </A>
+			 <% else %>
+			 	<img border=0 width=250 src="/images/No-Image-Available.gif" />
+		 	 <% end %>
+        </td>
+        <td  style="border-TOP: 1px solid #000000" >
+        	 <%   @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "5.jpg'") %>
+			 <% if @picture %>
+				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>">
+				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+				 </A>
+			 <% else %>
+			 	<img border=0 width=250 src="/images/No-Image-Available.gif" />
+		 	 <% end %>
+        </td>						
+    </tr>
+</table>
+</TABLE>
+    
+
+<% else %>
+   Part <%= @part_id %> not found
+<% end %>

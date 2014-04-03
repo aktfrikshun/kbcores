@@ -1,0 +1,43 @@
+<advnewsticker>
+<parameters>
+	<registration_code>dpre53erac</registration_code>
+	<movie_width>400</movie_width>
+	<movie_height>25</movie_height>
+	<bgcolor>FFFFFF</bgcolor>
+	<border_color>FFFFFF</border_color>
+	<font>Verdana,Arial</font>
+	<font_size>12</font_size>
+	<font_color>000000</font_color>
+	<font_bold>yes</font_bold>
+	<mouseover_font_color>CC0000</mouseover_font_color>
+	<text_align>center</text_align>
+	<left_margin>0</left_margin>
+	<right_margin>0</right_margin>
+	<top_space>0</top_space>
+	<underline>no</underline>
+	<pause_time>40</pause_time>
+</parameters>
+<content>
+	<subitem>
+		<but_text>Welcome to KBCores new website!</but_text>
+		<but_link>/Home#</but_link>
+		<but_target>_self</but_target>
+	</subitem>
+    <subitem>
+		<but_text>We have a new online catalog</but_text>
+		<but_link>#</but_link>
+		<but_target>_self</but_target>	
+	</subitem>
+	<subitem>
+		<but_text>Click here to search our catalog for engines.</but_text>
+		<but_link>/CatalogSelectMake/engines</but_link>
+		<but_target>_self</but_target>
+	</subitem>
+	<subitem>
+		<but_text>Click here to search our catalog for transmissions.</but_text>
+		<but_link>/CatalogSelectMake/transmissions</but_link>
+		<but_target>_self</but_target>
+	</subitem>
+
+</content>
+</advnewsticker>

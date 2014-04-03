@@ -1,0 +1,48 @@
+
+<% if @part %>
+<%= form_tag :controller => "Admin_Product_Edit", :action => "savePrices" %>
+<%= hidden_field_tag "id", @part.id %>
+<span class=tabletext style="font-size: 105%;">
+<b><%= @part.part_number %></b> - <%= @part.description.description %>
+</span>
+<BR><BR>
+<TABLE class=tabletext style="font-size: 105%;" >
+  <TR><TD><b></b></TD><TD><b>Quantity</b></TD><TD><b>Lot</b></TD><TD><b>Price</b></TD><TD><b>Core</b></TD></TR>
+  <TR><TD><b>Level1</b></TD><TD><%= text_field_tag "level_1_qty",@part.level_1_qty, "style" => "width:80" %></TD><TD><%= text_field_tag "level_1_lot",@part.level_1_lot %></TD><TD><%= text_field_tag "level_1_price",number_to_currency(@part.level_1_price), "style" => "width:80"  %></TD><TD><%= text_field_tag "level_1_core",number_to_currency(@part.level_1_core), "style" => "width:80"  %></TD></TR>
+  <TR><TD><b>Level2</b></TD><TD><%= text_field_tag "level_2_qty",@part.level_2_qty, "style" => "width:80" %></TD><TD><%= text_field_tag "level_2_lot",@part.level_2_lot %></TD><TD><%= text_field_tag "level_2_price",number_to_currency(@part.level_2_price), "style" => "width:80"  %></TD><TD><%= text_field_tag "level_2_core",number_to_currency(@part.level_2_core), "style" => "width:80"  %></TD></TR>
+  <TR><TD><b>Level3</b></TD><TD><%= text_field_tag "level_3_qty",@part.level_3_qty, "style" => "width:80" %></TD><TD><%= text_field_tag "level_3_lot",@part.level_3_lot %></TD><TD><%= text_field_tag "level_3_price",number_to_currency(@part.level_3_price), "style" => "width:80"  %></TD><TD><%= text_field_tag "level_3_core",number_to_currency(@part.level_3_core), "style" => "width:80"  %></TD></TR>
+  <TR><TD><b>Level4</b></TD><TD><%= text_field_tag "level_4_qty",@part.level_4_qty, "style" => "width:80" %></TD><TD><%= text_field_tag "level_4_lot",@part.level_4_lot %></TD><TD><%= text_field_tag "level_4_price",number_to_currency(@part.level_4_price), "style" => "width:80"  %></TD><TD><%= text_field_tag "level_4_core",number_to_currency(@part.level_4_core), "style" => "width:80"  %></TD></TR>
+  <TR><TD><b>Level5</b></TD><TD><%= text_field_tag "level_5_qty",@part.level_5_qty, "style" => "width:80" %></TD><TD><%= text_field_tag "level_5_lot",@part.level_5_lot %></TD><TD><%= text_field_tag "level_5_price",number_to_currency(@part.level_5_price), "style" => "width:80"  %></TD><TD><%= text_field_tag "level_5_core",number_to_currency(@part.level_5_core), "style" => "width:80"  %></TD></TR>
+  <TR><TD><b>Level6</b></TD><TD><%= text_field_tag "level_6_qty",@part.level_6_qty, "style" => "width:80" %></TD><TD><%= text_field_tag "level_6_lot",@part.level_6_lot %></TD><TD><%= text_field_tag "level_6_price",number_to_currency(@part.level_6_price), "style" => "width:80"  %></TD><TD><%= text_field_tag "level_6_core",number_to_currency(@part.level_6_core), "style" => "width:80"  %></TD></TR>
+  <TR><TD><b>Level7</b></TD><TD><%= text_field_tag "level_7_qty",@part.level_7_qty, "style" => "width:80" %></TD><TD><%= text_field_tag "level_7_lot",@part.level_7_lot %></TD><TD><%= text_field_tag "level_7_price",number_to_currency(@part.level_7_price), "style" => "width:80"  %></TD><TD><%= text_field_tag "level_7_core",number_to_currency(@part.level_7_core), "style" => "width:80"  %></TD></TR>
+  <TR><TD><b>Level8</b></TD><TD><%= text_field_tag "level_8_qty",@part.level_8_qty, "style" => "width:80" %></TD><TD><%= text_field_tag "level_8_lot",@part.level_8_lot %></TD><TD><%= text_field_tag "level_8_price",number_to_currency(@part.level_8_price), "style" => "width:80"  %></TD><TD><%= text_field_tag "level_8_core",number_to_currency(@part.level_8_core), "style" => "width:80"  %></TD></TR>
+  <TR><TD><b>Level9</b></TD><TD><%= text_field_tag "level_9_qty",@part.level_9_qty, "style" => "width:80" %></TD><TD><%= text_field_tag "level_9_lot",@part.level_9_lot %></TD><TD><%= text_field_tag "level_9_price",number_to_currency(@part.level_9_price), "style" => "width:80"  %></TD><TD><%= text_field_tag "level_9_core",number_to_currency(@part.level_9_core), "style" => "width:80"  %></TD></TR>
+
+  <TR><TD colspan=5 height=20></TD></TR>
+  <TR>
+  <TD colspan=5 align="right">
+    <INPUT type="Submit" value="Save">
+  </TD>
+  </TR>
+   
+</TABLE > 
+</form>
+<BR>
+<BR>
+<TABLE class=tabletext style="font-size: 105%;" width=100% >
+  <TR>
+  <TD colspan=2 align="right">
+  	<A HREF="/Admin_Product_Edit/uploadPicture/<%= @part.id%>">
+      << Upload Part Picture 
+    </A>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+	<A HREF="/Admin_Product_Edit/applications/<%= @part.id%>">
+      Update Part Applications >>
+    </A>
+  </TD>
+  </TR>
+</TABLE>
+
+<% else %>
+   Part not found
+<% end %>

@@ -1,0 +1,13 @@
+<SELECT id="PictList" name="PictList"  style="width:400">
+                 <% @pictures.each do |pict| %> 
+                   <% if @prod_picture && (@prod_picture.picture_id == pict.id) %>
+                       <OPTION value="<%= pict.id %>" selected><%= pict.name %> - <%= pict.comment %></OPTION>
+                   <% else %>
+                       <OPTION value="<%= pict.id %>"><%= pict.name %> - <%= pict.comment %></OPTION>
+                   <% end %>
+                <% end %>  
+ </SELECT>
+               <%= observe_field(:PictList,
+ 					:frequency => 0.25,
+ 					:update => :PictDiv,
+ 					:url => { :action => :choose_picture }) %>
