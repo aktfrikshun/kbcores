@@ -113,8 +113,8 @@
         <td style="border-TOP: 1px solid #000000" width="260">
         	 <%   @picture = Picture.find(:first, :conditions => " name = '" + product.part_no + "-1.jpg'") %>
 			 <% if @picture %>
-				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal">
-				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
+				 <A HREF="#" onclick="return zoom_image('/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg','KB Part #: <%= product.part_no %>','<%= product.description %>  Click outside image to close window...');">
+				 	<img border=0   alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
 				 </A>
 			 <% else %>
 			 	<img border=0 width=250 src="/images/photo_coming_soon.jpg" />
@@ -124,7 +124,7 @@
         	<% if @rid >= 2 %>
         	 <%   @picture = Picture.find(:first, :conditions => " name = '" + product.part_no + "-2.jpg'") %>
 			 <% if @picture %>
-				 <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" >
+				 <A HREF="#" onclick="return zoom_image('/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg','KB Part #: <%= product.part_no %>','<%= product.description %>  Click outside image to close window...');">
 				 	<img border=0  alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" />
 				 </A>
 			 <% else %>
@@ -139,6 +139,6 @@
 </table>
   <SCRIPT language="JavaScript">
     document.location.href="#results_section";
-	EYE.init();
-	trap();	
+   
   </SCRIPT>
+ 

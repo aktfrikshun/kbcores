@@ -21,6 +21,9 @@
         
         elem.value = resultStr;
     }
+    $(function() {
+    	$('a[href$=".jpg"]').abigimage();
+	});
 </SCRIPT>
   <a name="results_section" ></a>
 <%= form_remote_tag( :update => "page_view",
@@ -167,7 +170,7 @@
 	                <span class=tabletext><%= @translator.get_msg1(session[:language], "FOUND :arg1 PARTS MATCHING SEARCH CRITERIA", @this_page.tot_items.to_s) %></span>
 	            </td>
 	            <td align=right>
-	                <%= link_to_remote "< " + @translator.get_msg(session[:language], "PREVIOUS"), :update => "results",:url => {:action => "prev_lookup_page" } %>| <%= link_to_remote @translator.get_msg(session[:language], "NEXT") + " >", :update => "results",:url => {:action => "next_lookup_page" } %>
+	                <%= link_to_remote " " + @translator.get_msg(session[:language], "PREVIOUS"), :update => "results",:url => {:action => "prev_lookup_page" } %>| <%= link_to_remote @translator.get_msg(session[:language], "NEXT") + " ", :update => "results",:url => {:action => "next_lookup_page" } %>
 	            </td>
 	        </tr>
 	    </table>
@@ -178,7 +181,7 @@
 	    <table width=100%>
 	        <tr>
 	            <td align=right>
-	                <%= link_to_remote "< " + @translator.get_msg(session[:language], "PREVIOUS"), :update => "results",:url => {:action => "prev_lookup_page" } %>| <%= link_to_remote @translator.get_msg(session[:language], "NEXT") + " >", :update => "results",:url => {:action => "next_lookup_page" } %>
+	                <%= link_to_remote " " + @translator.get_msg(session[:language], "PREVIOUS"), :update => "results",:url => {:action => "prev_lookup_page" } %>| <%= link_to_remote @translator.get_msg(session[:language], "NEXT") + " ", :update => "results",:url => {:action => "next_lookup_page" } %>
 	            </td>
 	        </tr>
 	    </table>		
@@ -190,7 +193,4 @@
 	<% end %>
 </div>
 
-<SCRIPT language="javascript">
-    // Update lists
-    //selectionPartTypeChanged();
-</SCRIPT>
+

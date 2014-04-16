@@ -1,15 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" media="screen" type="text/css" href="/zoomimage/css/layout.css" />
-	<link rel="stylesheet" media="screen" type="text/css" href="/zoomimage/css/zoomimage.css" />
-    <link rel="stylesheet" media="screen" type="text/css" href="/zoomimage/css/custom.css" />
-    <script type="text/javascript" src="/zoomimage/js/jquery.js"></script>
-    <script type="text/javascript" src="/zoomimage/js/eye.js"></script>
-    <script type="text/javascript" src="/zoomimage/js/utils.js"></script>
-    <script type="text/javascript" src="/zoomimage/js/zoomimage.js"></script>
-	<script type="text/javascript" src="/javascripts/layout.js"></script>
-	
-<%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag :defaults %>
+	<link rel="stylesheet" href="/lightwindow/css/lightwindow.css" type="text/css" media="screen" />    
+	<script type="text/javascript" src="/lightwindow/javascript/scriptaculous.js?load=effects"></script>
+	<script type="text/javascript" src="/lightwindow/javascript/lightwindow.js"></script>
+  	
 <title>KB Cores (new)</title>
 <meta name="description" content="KB Cores buys, sells, and offers trade arrangements for scrap engines, pistons, transmissions, scrap aluminum, and almost any automotive part.  We disassemble thousands of engines and transmissions each month for rebuildable parts.">
 <meta name="keywords" content="kb cores, scrap, automotive scrap, automotive cores, engine cores, automotive parts, scrap farrous, scrap non-farrous, engines, crankshafts, cylinder heads, automotive surplus, automotive parts used, cores, transmissions, transmission, component parts">
@@ -37,11 +33,20 @@ function addToCart(partId) {
                 });
 	alert("Part added to list");
 }
+function zoom_image(url, title, caption) {
+	myLightWindow.activateWindow({
+		href: url, 
+		title: title, 
+		author: 'KBCores.com', 
+		caption: caption
+	});	
+	return false;
+} 
 </SCRIPT> 
 
 </head>
 
-<body  style="font-size: 10;font-family: Calibri, Arial, Verdana;background-color: #C0C0C0;" onLoad="trap();">
+<body  style="font-size: 10;font-family: Calibri, Arial, Verdana;background-color: #C0C0C0;" >
 <center>
 	<% @translator = Translations.new %>
 <div>
@@ -69,7 +74,6 @@ function addToCart(partId) {
 </table>
 </div>
 </center>
-
 <script type="text/javascript">
  
   var _gaq = _gaq || [];
@@ -83,6 +87,8 @@ function addToCart(partId) {
   })();
  
 </script>
+	<script type="text/javascript" src="/lightwindow/javascript/scriptaculous.js?load=effects"></script>
+	<script type="text/javascript" src="/lightwindow/javascript/lightwindow.js"></script>
 
 </body>
 </html>
