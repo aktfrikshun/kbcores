@@ -124,12 +124,12 @@ class PartController < ApplicationController
       @whereStr += @andCond + "parts.casting_no like '%" + @casting_number + "%' "
       @andCond = " and "      
     end 
-    if (@part_no)
+    if (@part_no) 
       session[:part_no] = @part_no;          
       @whereStr += @andCond + "parts.part_no like '%" + @part_no + "%' "
       @andCond = " and "      
     end     
-    if (@trans_type)
+    if (@trans_type) and (@trans_type.size > 0)
       session[:trans_type] = @trans_type;      
       @whereStr += @andCond + "parts.trans_type like '%" + @trans_type + "%' "
       @andCond = " and "      
@@ -222,7 +222,7 @@ class PartController < ApplicationController
     session[:this_page] = nil;
     
     
-    redirect_to "/part/index"
+    redirect_to "/part/index/?rid=#{params[:rid]}"
   end
   
 end

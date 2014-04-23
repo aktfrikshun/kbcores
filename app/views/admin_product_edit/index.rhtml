@@ -211,36 +211,56 @@ session[:next_id] = @part.id %>
         <td style="border-TOP: 1px solid #000000">
             <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-1.jpg'") %>
             <% if @picture %>
-            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <A HREF="#" onclick="return zoom_image('/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg','KB Part #: <%= @part.part_no %>','<%= @part.description %>  Click outside image to close window...');"> <img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
             <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
         </td>
 		
         <td style="border-TOP: 1px solid #000000">
             <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-2.jpg'") %>
             <% if @picture %>
-            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <A HREF="#" onclick="return zoom_image('/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg','KB Part #: <%= @part.part_no %>','<%= @part.description %>  Click outside image to close window...');"> <img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
             <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
         </td>
         <td style="border-TOP: 1px solid #000000">
             <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-3.jpg'") %>
             <% if @picture %>
-            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <A HREF="#" onclick="return zoom_image('/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg','KB Part #: <%= @part.part_no %>','<%= @part.description %>  Click outside image to close window...');"> <img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
             <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
         </td>
 				</tr><tr>
         <td >
             <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-4.jpg'") %>
             <% if @picture %>
-            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <A HREF="#" onclick="return zoom_image('/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg','KB Part #: <%= @part.part_no %>','<%= @part.description %>  Click outside image to close window...');"> <img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
             <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
         </td>
         <td >
             <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-5.jpg'") %>
             <% if @picture %>
-            <A HREF="/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg"  class="customGal" ><img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <A HREF="#" onclick="return zoom_image('/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg','KB Part #: <%= @part.part_no %>','<%= @part.description %>  Click outside image to close window...');"> <img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
             <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
         </td>
-		<td ></td>
+		<td >
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-6.jpg'") %>
+            <% if @picture %>
+            <A HREF="#" onclick="return zoom_image('/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg','KB Part #: <%= @part.part_no %>','<%= @part.description %>  Click outside image to close window...');"> <img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>		
+		</td>
+				</tr><tr>
+        <td >
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-7.jpg'") %>
+            <% if @picture %>
+            <A HREF="#" onclick="return zoom_image('/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg','KB Part #: <%= @part.part_no %>','<%= @part.description %>  Click outside image to close window...');"> <img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+        <td >
+            <% @picture = Picture.find(:first, :conditions => " name = '" + @part.part_no + "-8.jpg'") %>
+            <% if @picture %>
+            <A HREF="#" onclick="return zoom_image('/Admin_Product_Edit/picture/<%= @picture.id %>?dummy.jpg','KB Part #: <%= @part.part_no %>','<%= @part.description %>  Click outside image to close window...');"> <img border=0 alt="click on picture to view full-size" title="click on picture to view full-size" width=250 src="/Admin_Product_Edit/picture/<%= @picture.id %>" /></A><% else %>
+            <img border=0 width=250 src="/images/photo_coming_soon.jpg" /><% end %>
+        </td>
+		<td >
+		</td>		
    </tr>
 </table>
 </TABLE><% else %>

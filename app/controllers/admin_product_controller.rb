@@ -120,7 +120,7 @@ def index
       @whereStr += @andCond + "parts.part_no like '%" + @part_no + "%' "
       @andCond = " and "      
     end     
-    if (@trans_type)
+    if (@trans_type) and (@trans_type.size > 0)
       session[:trans_type] = @trans_type      
       @whereStr += @andCond + "parts.trans_type like '%" + @trans_type + "%' "
       @andCond = " and "      

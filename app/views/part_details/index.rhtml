@@ -70,10 +70,10 @@
 				<td width="350" > <%= @part.trans_speed %> </td>
 				<td   width="150"   > <% if @rid >= 3 %><em>App Year&nbsp;&nbsp;&nbsp;&nbsp;</em><% end %> </td>
 				<td width="350" > <% if @rid >= 3 %>
-				<% if @part.application_start_yr > 0 %>
+				<% if @part.application_start_yr and @part.application_start_yr > 0 %>
 				<%= @part.application_start_yr %>-
 				<% end %>
-				<% if @part.application_end_yr > 0 %>
+				<% if @part.application_end_yr and @part.application_end_yr > 0 %>
 				<%= @part.application_end_yr %>
 				<% end %>
 				<% end %> </td>

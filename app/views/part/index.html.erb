@@ -148,7 +148,7 @@
     <TR>
         <TD align="left" colspan=2>
             <INPUT type=SUBMIT value="<%= @translator.get_msg(session[:language], "SEARCH ALL KEYWORDS") %>">
-			<INPUT type="BUTTON" value="RESET SEARCH" onclick="location='/part/reset_search';">
+			<INPUT type="BUTTON" value="RESET SEARCH" onclick="location='/part/reset_search/?rid=<%= params[:rid] %>';">
 			&nbsp;&nbsp;<a href="/shopping_cart/index"> [ View my Order list ] </a>
         </TD>
     </TR>
